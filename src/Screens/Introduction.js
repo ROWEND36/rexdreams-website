@@ -4,7 +4,7 @@ const Introduction = (props) => {
   const welcome = "Welcome";
   setTimeout(() => {
     props.history.push("/Home");
-  }, 12000);
+  }, 13000);
   const time = new Date().getTime();
   const expiredTime = time + 3000;
 
