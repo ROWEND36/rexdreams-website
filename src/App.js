@@ -83,7 +83,7 @@ export default function BackToTop(props) {
           color="secondary"
           size="small"
           aria-label="scroll back to top"
-          style={{ marginBottom: "80px" }}
+          style={{ marginBottom: "120px" }}
         >
           <KeyboardArrowUpIcon />
         </Fab>
