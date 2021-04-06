@@ -14,8 +14,9 @@ import MoneyIcon from "@material-ui/icons/Money";
 import BusinessIcon from "@material-ui/icons/Business";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import HomeIcon from "@material-ui/icons/Home";
 import logo from "../Images/logo.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -226,21 +227,39 @@ function Header(props) {
           <div className="d-none d-sm-inline-block">
             <div className="d-flex" style={{ float: "right" }}>
               <IconButton
+                href="/Home"
+                size="large"
+                activeStyle={{ color: "purple" }}
+                aria-label="Home"
+                color="inherit"
+                className="mx-4"
+              >
+                <HomeIcon />
+              </IconButton>
+              <IconButton
                 href="/Chat"
+                activeStyle={{ color: "purple" }}
                 aria-label="Chats with us and share images"
                 color="inherit"
+                className="mx-4"
               >
                 <Badge badgeContent={4} color="secondary">
                   <ChatIcon />
                 </Badge>
               </IconButton>
-              <IconButton href="/Pricing" aria-label="Pricing" color="inherit">
+              <IconButton
+                href="/Pricing"
+                aria-label="Pricing"
+                color="inherit"
+                className="mx-4"
+              >
                 <MoneyIcon />
               </IconButton>
               <IconButton
                 href="/Invest"
                 aria-label="Chats with us and share images"
                 color="inherit"
+                className="mx-4"
               >
                 <BusinessIcon />
               </IconButton>

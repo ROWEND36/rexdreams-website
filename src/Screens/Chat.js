@@ -9,25 +9,29 @@ function Chat(props) {
   return (
     <div>
       <Header />
-      <Container>
-        <Card className="shadow bg-secondary my-4">
-          <CardContent>
-            <Box my={4} mx={4}></Box>
-          </CardContent>
-        </Card>
-        <Card className="shadow bg-secondary my-4">
-          <CardContent>
-            <div className="d-flex flex-horizontal justify-content-between">
-              <div>
+      <div className="App">
+        <header className="App-header">
+          <Container>
+            <Card className="shadow bg-secondary my-4">
+              <CardContent>
                 <Box my={4} mx={4}></Box>
-              </div>
-              <div>
-                <Box my={4} mx={4}></Box>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </Container>
+              </CardContent>
+            </Card>
+            <Card className="shadow bg-secondary my-4">
+              <CardContent>
+                <div className="d-flex flex-horizontal justify-content-between">
+                  <div>
+                    <Box my={4} mx={4}></Box>
+                  </div>
+                  <div>
+                    <Box my={4} mx={4}></Box>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </Container>
+        </header>
+      </div>
     </div>
   );
 }

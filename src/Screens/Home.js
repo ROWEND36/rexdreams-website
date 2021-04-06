@@ -14,51 +14,51 @@ function Home(props) {
           <Container>
             <Card className="shadow bg-secondary my-4">
               <CardContent>
-                <Box my={4} mx={4} style={{ height: "65vh" }}></Box>
+                <Box my={4} mx={4}></Box>
               </CardContent>
             </Card>
             <Card className="shadow bg-secondary my-4">
               <CardContent>
                 <div className="d-flex flex-horizontal justify-content-between">
                   <div>
-                    <Box my={4} mx={4} style={{ height: "150px" }}></Box>
+                    <Box my={4} mx={4}></Box>
                   </div>
                   <div>
-                    <Box my={4} mx={4} style={{ height: "65vh" }}></Box>
+                    <Box my={4} mx={4}></Box>
                   </div>
                 </div>
               </CardContent>
             </Card>
             <Card className="shadow bg-secondary my-4">
               <CardContent>
-                <Box my={4} mx={4} style={{ height: "65vh" }}></Box>
+                <Box my={4} mx={4}></Box>
               </CardContent>
             </Card>
             <Card className="shadow bg-secondary my-4">
               <CardContent>
                 <div className="d-flex flex-horizontal justify-content-between">
                   <div>
-                    <Box my={4} mx={4} style={{ height: "35vh" }}></Box>
+                    <Box my={4} mx={4}></Box>
                   </div>
                   <div>
-                    <Box my={4} mx={4} style={{ height: "60vh" }}></Box>
+                    <Box my={4} mx={4}></Box>
                   </div>
                 </div>
               </CardContent>
             </Card>
             <Card className="shadow bg-secondary my-4">
               <CardContent>
-                <Box my={4} mx={4} style={{ height: "60vh" }}></Box>
+                <Box my={4} mx={4}></Box>
               </CardContent>
             </Card>
             <Card className="shadow bg-secondary my-4">
               <CardContent>
                 <div className="d-flex flex-horizontal justify-content-between">
                   <div>
-                    <Box my={4} mx={4} style={{ height: "65vh" }}></Box>
+                    <Box my={4} mx={4}></Box>
                   </div>
                   <div>
-                    <Box my={4} mx={4} style={{ height: "40vh" }}></Box>
+                    <Box my={4} mx={4}></Box>
                   </div>
                 </div>
               </CardContent>
