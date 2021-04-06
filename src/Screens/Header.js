@@ -136,53 +136,67 @@ function Header(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="Chats with us and share images" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <ChatIcon />
-          </Badge>
-        </IconButton>
-        <p>Chat</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="Chats with us and share images" color="inherit">
-          <MoneyIcon />
-        </IconButton>
-        <p>Pricing</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="Chats with us and share images" color="inherit">
-          <BusinessIcon />
-        </IconButton>
-        <p>Invest</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+      <div style={{ backgroundColor: "black" }}>
+        <MenuItem>
+          <IconButton aria-label="Home" color="secondary" href="/Home">
+            <HomeIcon />
+          </IconButton>
+          <p style={{ color: "white", margin: "0px 10px" }}>Home</p>
+        </MenuItem>
+        <MenuItem>
+          <IconButton
+            aria-label="Chats with us and share images"
+            color="secondary"
+            href="/Chat"
+          >
+            <Badge badgeContent={4} color="secondary">
+              <ChatIcon />
+            </Badge>
+          </IconButton>
+          <p style={{ color: "white", margin: "0px 10px" }}>Chat</p>
+        </MenuItem>
+        <MenuItem>
+          <IconButton aria-label="Pricing" color="secondary" href="/Price">
+            <MoneyIcon />
+          </IconButton>
+          <p style={{ color: "white", margin: "0px 10px" }}>Pricing</p>
+        </MenuItem>
+        <MenuItem>
+          <IconButton aria-label="Invest" color="secondary" href="/Invest">
+            <BusinessIcon />
+          </IconButton>
+          <p style={{ color: "white", margin: "0px 10px" }}>Invest</p>
+        </MenuItem>
+        <div className="d-flex flex-horizontal justify-content-between">
+          <MenuItem>
+            <IconButton aria-label="show 4 new mails" color="secondary">
+              <Badge badgeContent={4} color="secondary">
+                <MailIcon />
+              </Badge>
+            </IconButton>
+          </MenuItem>
+          <MenuItem>
+            <IconButton
+              aria-label="show 11 new notifications"
+              color="secondary"
+            >
+              <Badge badgeContent={11} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          </MenuItem>
+          <MenuItem onClick={handleProfileMenuOpen}>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="primary-search-account-menu"
+              aria-haspopup="true"
+              color="secondary"
+            >
+              <AccountCircle />
+            </IconButton>
+          </MenuItem>
+        </div>
+      </div>
     </Menu>
   );
   const showSearch = () => {
