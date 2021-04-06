@@ -1,30 +1,21 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Box from "@material-ui/core/Box";
+
+import logo from "../Images/logo.png";
 
 function Home(props) {
   return (
     <div>
       <Container>
-        <Card className="shadow bg-secondary my-4">
-          <CardContent>
-            <Box my={4} mx={4}></Box>
-          </CardContent>
-        </Card>
-        <Card className="shadow bg-secondary my-4">
-          <CardContent>
-            <div className="d-flex flex-horizontal justify-content-between">
-              <div>
-                <Box my={4} mx={4}></Box>
-              </div>
-              <div>
-                <Box my={4} mx={4}></Box>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <img
+          src={logo}
+          alt="logo"
+          width="100px"
+          height="0px"
+          className="rounded App-logo mb-5"
+        />
+        <h4>Overall re-design awaiting a new app launch in progress...</h4>
+        <h1>Available shortly</h1>
       </Container>
     </div>
   );
