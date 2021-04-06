@@ -1,5 +1,4 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Box from "@material-ui/core/Box";
@@ -11,7 +10,7 @@ function Home(props) {
       <Header />
       <div className="App">
         <header className="App-header">
-          <Container>
+          <div>
             <Card className="shadow bg-secondary my-4">
               <CardContent>
                 <Box my={4} mx={4}></Box>
@@ -63,7 +62,7 @@ function Home(props) {
                 </div>
               </CardContent>
             </Card>
-          </Container>
+          </div>
         </header>
       </div>
     </div>
