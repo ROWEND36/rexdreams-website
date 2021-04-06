@@ -9,18 +9,22 @@ const Introduction = (props) => {
   const expiredTime = time + 3000;
 
   return (
-    <div>
-      <img
-        src={logo}
-        alt="logo"
-        width="50%"
-        height="50%"
-        style={{ borderRadius: "50px" }}
-        className="rounded Introduction-logo mb-5"
-      />
-      {expiredTime < new Date().getTime() ? welcome : ""}
-      <div className="Introduction-name Introduction-Rex">REX</div>
-      <div className="Introduction-Dreams">DREAMS</div>
+    <div className="App">
+      <header className="App-header">
+        <div>
+          <img
+            src={logo}
+            alt="logo"
+            width="50%"
+            height="50%"
+            style={{ borderRadius: "50px" }}
+            className="rounded Introduction-logo mb-5"
+          />
+          {expiredTime < new Date().getTime() ? welcome : ""}
+          <div className="Introduction-name Introduction-Rex">REX</div>
+          <div className="Introduction-Dreams">DREAMS</div>
+        </div>
+      </header>
     </div>
   );
 };

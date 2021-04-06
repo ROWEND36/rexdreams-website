@@ -3,10 +3,12 @@ import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Box from "@material-ui/core/Box";
+import Header from "./Header";
 
 function Pricing(props) {
   return (
     <div>
+      <Header />
       <Container>
         <Card className="shadow bg-secondary my-4">
           <CardContent>

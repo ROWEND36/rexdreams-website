@@ -74,11 +74,7 @@ export default function BackToTop(props) {
       <Box my={0}>
         <Provider store={Store}>
           <Router history={History}>
-            <div className="App">
-              <header className="App-header">
-                <Routers />
-              </header>
-            </div>
+            <Routers />
           </Router>
         </Provider>
       </Box>
