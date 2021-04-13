@@ -78,6 +78,64 @@ const MobileViewWelcome2ndHalf = () => {
     </motion.div>
   );
 };
+
+const WelcomeHomeScreen = () => {
+  return (
+    <Box m={4} className="child-center">
+      <Bounce ssrFadeout>
+        <motion.div
+          drag={"x"}
+          x={x}
+          scale={scale}
+          dragConstraints={{
+            left: -100,
+            right: 100,
+            top: -100,
+            bottom: 100,
+          }}
+          animate={animate}
+          transition={{ duration: 10 }}
+          onTap={() => cycle()}
+          className="Introduction-name d-none d-sm-inline-block"
+        >
+          Welcome{" "}
+        </motion.div>
+        <MobileViewWelcome1stHalf />
+      </Bounce>
+      <RubberBand style={{ opacity: 0 }}>
+        <motion.div
+          drag={"x"}
+          x={x}
+          scale={scale}
+          dragConstraints={{
+            left: -100,
+            right: 100,
+            top: -100,
+            bottom: 100,
+          }}
+          animate={animate1}
+          transition={{ duration: 10 }}
+          onTap={() => cycle1()}
+          className="Introduction-name d-none d-sm-inline-block ml-4"
+        >
+          {" "}
+          Rexer
+          {/* find a more suitable icon later on */}
+          <img
+            src={KingIcon}
+            style={{ background: "gray", borderRadius: "50%" }}
+            height="50px"
+            width="50px"
+            alt="kingIcon"
+          />{" "}
+          !
+        </motion.div>
+        <MobileViewWelcome2ndHalf />
+      </RubberBand>
+    </Box>
+  );
+};
+
 function Home() {
   config({ ssrFadeout: true });
   const x = useMotionValue(0);
@@ -94,60 +152,7 @@ function Home() {
   return (
     <Scroll height={"100vh"} width={"100%"}>
       <div onScroll="" class="box">
-        <div id="stay-in-place parent-center">
-          <Box m={4} className="child-center">
-            <Bounce ssrFadeout>
-              <motion.div
-                drag={"x"}
-                x={x}
-                scale={scale}
-                dragConstraints={{
-                  left: -100,
-                  right: 100,
-                  top: -100,
-                  bottom: 100,
-                }}
-                animate={animate}
-                transition={{ duration: 10 }}
-                onTap={() => cycle()}
-                className="Introduction-name d-none d-sm-inline-block"
-              >
-                Welcome{" "}
-              </motion.div>
-              <MobileViewWelcome1stHalf />
-            </Bounce>
-            <RubberBand style={{ opacity: 0 }}>
-              <motion.div
-                drag={"x"}
-                x={x}
-                scale={scale}
-                dragConstraints={{
-                  left: -100,
-                  right: 100,
-                  top: -100,
-                  bottom: 100,
-                }}
-                animate={animate1}
-                transition={{ duration: 10 }}
-                onTap={() => cycle1()}
-                className="Introduction-name d-none d-sm-inline-block ml-4"
-              >
-                {" "}
-                Rexer
-                {/* find a more suitable icon later on */}
-                <img
-                  src={KingIcon}
-                  style={{ background: "gray", borderRadius: "50%" }}
-                  height="50px"
-                  width="50px"
-                  alt="kingIcon"
-                />{" "}
-                !
-              </motion.div>
-              <MobileViewWelcome2ndHalf />
-            </RubberBand>
-          </Box>
-        </div>
+        <div id="stay-in-place parent-center"></div>
 
         <div id="move-in-to-place">
           <Box m={4}>
