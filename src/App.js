@@ -13,10 +13,11 @@ import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import Zoom from "@material-ui/core/Zoom";
 import "./App.css";
 import History from "./Components/History";
-import { Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Routers from "./Components/Routers";
 import Store from "./Components/Redux/Store";
+import Header from "./Screens/Header";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,15 +68,29 @@ ScrollTop.propTypes = {
 };
 
 export default function BackToTop(props) {
+  React.useEffect(() => {
+    var s1 = document.createElement("script"),
+      s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = "https://embed.tawk.to/5f9066b1f91e4b431ec66b34/default";
+    s1.charset = "UTF-8";
+    s1.setAttribute("crossorigin", "*");
+    s0.parentNode.insertBefore(s1, s0);
+  });
   return (
     <React.Fragment>
       <CssBaseline />
       <Toolbar id="back-to-top-anchor" style={{ background: "black" }} />
       <Box my={0}>
         <Provider store={Store}>
-          <Router history={History}>
-            <Routers />
-          </Router>
+          <BrowserRouter history={History}>
+            <Header />
+            <div className="App">
+              <header className="App-header">
+                <Routers />
+              </header>
+            </div>
+          </BrowserRouter>
         </Provider>
       </Box>
       <ScrollTop {...props}>

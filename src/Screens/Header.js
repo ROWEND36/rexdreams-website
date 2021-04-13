@@ -10,8 +10,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import ChatIcon from "@material-ui/icons/Chat";
-import MoneyIcon from "@material-ui/icons/Money";
-import BusinessIcon from "@material-ui/icons/Business";
+import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
+import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import MoreIcon from "@material-ui/icons/MoreVert";
@@ -157,13 +157,13 @@ function Header(props) {
         </MenuItem>
         <MenuItem>
           <IconButton aria-label="Pricing" color="secondary" href="/Price">
-            <MoneyIcon />
+            <MonetizationOnIcon />
           </IconButton>
           <p style={{ color: "white", margin: "0px 10px" }}>Pricing</p>
         </MenuItem>
         <MenuItem>
           <IconButton aria-label="Invest" color="secondary" href="/Invest">
-            <BusinessIcon />
+            <AccountBalanceIcon />
           </IconButton>
           <p style={{ color: "white", margin: "0px 10px" }}>Invest</p>
         </MenuItem>
@@ -216,7 +216,11 @@ function Header(props) {
   return (
     <div className={classes.grow}>
       <AppBar position="fixed">
-        <Toolbar style={{ background: "black" }}>
+        <Toolbar
+          style={{
+            background: "black",
+          }}
+        >
           <IconButton
             href="/Home"
             edge="start"
@@ -267,7 +271,7 @@ function Header(props) {
                 color="inherit"
                 className="mx-4"
               >
-                <MoneyIcon />
+                <MonetizationOnIcon />
               </IconButton>
               <IconButton
                 href="/Invest"
@@ -275,7 +279,7 @@ function Header(props) {
                 color="inherit"
                 className="mx-4"
               >
-                <BusinessIcon />
+                <AccountBalanceIcon />
               </IconButton>
             </div>
           </div>
@@ -320,5 +324,4 @@ function Header(props) {
     </div>
   );
 }
-
 export default Header;
