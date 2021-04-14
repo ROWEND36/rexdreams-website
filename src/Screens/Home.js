@@ -85,6 +85,91 @@ const MobileViewWelcome2ndHalf = () => {
   );
 };
 
+const MobileViewWelcomeHomeScreen2 = () => {
+  const x = useMotionValue(0);
+  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+  const [animate, cycle] = useCycle(
+    { scale: 0, rotate: 0 },
+    { scale: 1.0, rotate: 360 }
+  );
+  return (
+    <motion.div
+      drag={"x"}
+      x={x}
+      scale={scale}
+      dragConstraints={{
+        left: -100,
+        right: 100,
+        top: -100,
+        bottom: 100,
+      }}
+      animate={animate}
+      transition={{ duration: 10 }}
+      onTap={() => cycle()}
+      className="Introduction-name-small d-sm-none ml-2"
+    >
+      Let's create <SettingsIcon /> your dreams together
+      <AssistantPhotoIcon />
+    </motion.div>
+  );
+};
+const MobileViewWelcomeHomeScreen3 = () => {
+  const x = useMotionValue(0);
+  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+  const [animate, cycle] = useCycle(
+    { scale: 0, rotate: 0 },
+    { scale: 1.0, rotate: 360 }
+  );
+  return (
+    <motion.div
+      drag={"x"}
+      x={x}
+      scale={scale}
+      dragConstraints={{
+        left: -100,
+        right: 100,
+        top: -100,
+        bottom: 100,
+      }}
+      animate={animate}
+      transition={{ duration: 10 }}
+      onTap={() => cycle()}
+      className="Introduction-name-small d-sm-none ml-2"
+    >
+      We can bring your idea to life
+      <DeviceHubIcon />
+    </motion.div>
+  );
+};
+const MobileViewWelcomeHomeScreen4 = () => {
+  const x = useMotionValue(0);
+  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+  const [animate, cycle] = useCycle(
+    { scale: 0, rotate: 0 },
+    { scale: 1.0, rotate: 360 }
+  );
+  return (
+    <motion.div
+      drag={"x"}
+      x={x}
+      scale={scale}
+      dragConstraints={{
+        left: -100,
+        right: 100,
+        top: -100,
+        bottom: 100,
+      }}
+      animate={animate}
+      transition={{ duration: 10 }}
+      onTap={() => cycle()}
+      className="Introduction-name-small d-sm-none ml-2"
+    >
+      Scroll down
+      <ArrowDownwardIcon /> to experience how
+    </motion.div>
+  );
+};
+
 const WelcomeHomeScreenMsg1 = () => {
   config({ ssrFadeout: true });
   const x = useMotionValue(0);
@@ -182,7 +267,7 @@ const WelcomeHomeScreenMsg2 = () => {
           Let's create <SettingsIcon /> your dreams together
           <AssistantPhotoIcon />
         </motion.div>
-        <MobileViewWelcome1stHalf />
+        <MobileViewWelcomeHomeScreen2 />
       </RubberBand>
     </Box>
   );
@@ -217,7 +302,7 @@ const WelcomeHomeScreenMsg3 = () => {
           We can bring your idea to life
           <DeviceHubIcon />
         </motion.div>
-        <MobileViewWelcome1stHalf />
+        <MobileViewWelcomeHomeScreen3 />
       </Spin>
     </Box>
   );
@@ -228,8 +313,8 @@ const WelcomeHomeScreenMsg4 = () => {
   const x = useMotionValue(0);
   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
   const [animate, cycle] = useCycle(
-    { scale: 0, rotate: 0 },
-    { scale: 1.5, rotate: 360 }
+    { scale: 1.3, rotate: 0 },
+    { scale: 1.0, rotate: 360 }
   );
   return (
     <Box m={4} className="child-center">
@@ -252,17 +337,31 @@ const WelcomeHomeScreenMsg4 = () => {
           Scroll down
           <ArrowDownwardIcon /> to experience how
         </motion.div>
-        <MobileViewWelcome1stHalf />
+        <MobileViewWelcomeHomeScreen3 />
       </Wobble>
     </Box>
   );
 };
 
 function Home() {
+  let dateTime = new Date().getTime();
+  let firstOverDue = dateTime + 12000;
+  let secondOverdue = firstOverDue + 13000;
+  let thirdOverdue = secondOverdue + 14000;
   return (
     <Scroll height={"100vh"} width={"100%"}>
       <div onScroll="" class="box">
-        <div id="stay-in-place parent-center"></div>
+        <div id="stay-in-place parent-center">
+          {dateTime < firstOverDue ? (
+            <WelcomeHomeScreenMsg4 />
+          ) : dateTime === firstOverDue && dateTime < secondOverdue ? (
+            <WelcomeHomeScreenMsg2 />
+          ) : dateTime === secondOverdue && dateTime < thirdOverdue ? (
+            <WelcomeHomeScreenMsg3 />
+          ) : (
+            <WelcomeHomeScreenMsg4 />
+          )}
+        </div>
 
         <div id="move-in-to-place">
           <Box m={4}>
