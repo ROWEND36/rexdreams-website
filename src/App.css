@@ -106,7 +106,7 @@
   height: 90vh;
   overflow: hidden;
 }
-.box: #move-in-to-place {
+.box:target #move-in-to-place {
   bottom: 0;
   -webkit-transition: all 5s, -webkit-transform 5s;
   transition: all 5s, transform 1s;

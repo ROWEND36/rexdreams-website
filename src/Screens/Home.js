@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import {
   Frame,
   motion,
@@ -9,6 +9,7 @@ import {
   useTransform,
   useCycle,
 } from "framer";
+import { useTransition, animated } from "react-spring";
 import Bounce from "react-reveal/Bounce";
 import RubberBand from "react-reveal/RubberBand";
 import Spin from "react-reveal/Spin";
@@ -21,6 +22,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import AssistantPhotoIcon from "@material-ui/icons/AssistantPhoto";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import DeviceHubIcon from "@material-ui/icons/DeviceHub";
+import { uuid } from "uuidv4";
 
 const MobileViewWelcome1stHalf = () => {
   const x = useMotionValue(0);
@@ -145,7 +147,7 @@ const MobileViewWelcomeHomeScreen4 = () => {
   const x = useMotionValue(0);
   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
   const [animate, cycle] = useCycle(
-    { scale: 0, rotate: 0 },
+    { scale: 1.5, rotate: 0 },
     { scale: 1.0, rotate: 360 }
   );
   return (
@@ -178,10 +180,6 @@ const WelcomeHomeScreenMsg1 = () => {
     { scale: 0, rotate: 0 },
     { scale: 1.5, rotate: 360 }
   );
-  const [animate1, cycle1] = useCycle(
-    { scale: 0, rotate: 0 },
-    { scale: 1.5, rotate: 360, opacity: 1 }
-  );
   return (
     <Box m={4} className="child-center">
       <Bounce ssrFadeout>
@@ -204,7 +202,7 @@ const WelcomeHomeScreenMsg1 = () => {
         </motion.div>
         <MobileViewWelcome1stHalf />
       </Bounce>
-      <RubberBand style={{ opacity: 0 }}>
+      <RubberBand>
         <motion.div
           drag={"x"}
           x={x}
@@ -215,12 +213,11 @@ const WelcomeHomeScreenMsg1 = () => {
             top: -100,
             bottom: 100,
           }}
-          animate={animate1}
+          animate={animate}
           transition={{ duration: 10 }}
-          onTap={() => cycle1()}
+          onTap={() => cycle()}
           className="Introduction-name d-none d-sm-inline-block ml-4"
         >
-          {" "}
           Rexer
           {/* find a more suitable icon later on */}
           <img
@@ -337,31 +334,47 @@ const WelcomeHomeScreenMsg4 = () => {
           Scroll down
           <ArrowDownwardIcon /> to experience how
         </motion.div>
-        <MobileViewWelcomeHomeScreen3 />
+        <MobileViewWelcomeHomeScreen4 />
       </Wobble>
     </Box>
   );
 };
 
+const pages = [
+  () => {
+    return <WelcomeHomeScreenMsg1 />;
+  },
+  () => {
+    return <WelcomeHomeScreenMsg2 />;
+  },
+  () => {
+    return <WelcomeHomeScreenMsg3 />;
+  },
+  () => {
+    return <WelcomeHomeScreenMsg4 />;
+  },
+];
+
 function Home() {
-  let dateTime = new Date().getTime();
-  let firstOverDue = dateTime + 12000;
-  let secondOverdue = firstOverDue + 13000;
-  let thirdOverdue = secondOverdue + 14000;
+  const [index, setIndex] = useState(0);
+  const timeout = useRef(0);
+  const gotoNextPage = useCallback(() => {
+    timeout.current = null;
+    if (index + 1 < pages.length) setIndex(index + 1);
+  }, [index]);
+  useEffect(() => {
+    timeout.current = setTimeout(gotoNextPage, 11000);
+  }, [gotoNextPage]);
+  // const onClick = useCallback(() => {
+  //   if (timeout.current) {
+  //     clearTimeout(timeout.current);
+  //     timeout.current = setTimeout(gotoNextPage, 22000);
+  //   }
+  // }, [gotoNextPage]);
   return (
     <Scroll height={"100vh"} width={"100%"}>
       <div onScroll="" class="box">
-        <div id="stay-in-place parent-center">
-          {dateTime < firstOverDue ? (
-            <WelcomeHomeScreenMsg4 />
-          ) : dateTime === firstOverDue && dateTime < secondOverdue ? (
-            <WelcomeHomeScreenMsg2 />
-          ) : dateTime === secondOverdue && dateTime < thirdOverdue ? (
-            <WelcomeHomeScreenMsg3 />
-          ) : (
-            <WelcomeHomeScreenMsg4 />
-          )}
-        </div>
+        <div id="stay-in-place parent-center">{pages[index]()}</div>
 
         <div id="move-in-to-place">
           <Box m={4}>
