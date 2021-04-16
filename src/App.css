@@ -29,6 +29,9 @@
   .Home-first-segment {
     animation: Home-first-segment-spin 4s linear;
   }
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 .App-header {
@@ -86,33 +89,43 @@
     transform: translateX(-3vw);
   }
 }
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 #stay-in-place {
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background: #000000;
-  position: absolute;
-}
-#move-in-to-place {
-  position: absolute;
-  bottom: -100%;
-  height: 100%;
-  width: 100%;
-  background: black;
-  opacity: 0;
+  position: relative;
 }
 .box {
   position: relative;
-  width: 100vw;
-  height: 90vh;
+  width: 100%;
+  height: auto;
   overflow: hidden;
 }
-.box:target #move-in-to-place {
+.box #move-in-to-place {
+  /* position: absolute; */
   bottom: 0;
+  height: 100vh;
+  width: 100vw;
   -webkit-transition: all 5s, -webkit-transform 5s;
   transition: all 5s, transform 1s;
-  width: 100%;
-  height: 100%;
+  background: black;
   opacity: 1;
+}
+.box .move-in-to-below {
+  bottom: -100%;
+  opacity: 0;
+}
+.box .move-in-to-above {
+  bottom: 100%;
+  opacity: 0;
 }
 
 .landing-footer {
