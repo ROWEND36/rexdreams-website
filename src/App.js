@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import "fontsource-roboto";
 import React from "react";
 import { Provider } from "react-redux";
@@ -11,7 +11,7 @@ import Box from "@material-ui/core/Box";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import Zoom from "@material-ui/core/Zoom";
-import "./App.css";
+import "./App.scss";
 import History from "./Components/History";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
