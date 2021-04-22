@@ -214,7 +214,7 @@ function Header(props) {
   const [modal, setModal] = useState(false);
 
   return (
-    <div className={classes.grow}>
+    <div>
       <AppBar position="fixed">
         <Toolbar
           style={{

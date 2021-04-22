@@ -80,19 +80,17 @@ export default function BackToTop(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Toolbar id="back-to-top-anchor" style={{ background: "black" }} />
-      <Box my={0}>
-        <Provider store={Store}>
-          <BrowserRouter history={History}>
-            <Header />
-            <div className="App">
-              <header className="App-header">
-                <Routers />
-              </header>
-            </div>
-          </BrowserRouter>
-        </Provider>
-      </Box>
+      <Provider store={Store}>
+        <BrowserRouter history={History}>
+          <Header />
+          <Toolbar id="back-to-top-anchor" style={{ background: "black" }} />
+          <div className="App">
+            <header className="App-header">
+              <Routers />
+            </header>
+          </div>
+        </BrowserRouter>
+      </Provider>
       <ScrollTop {...props}>
         <Fab
           color="secondary"

@@ -33,10 +33,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
   background-color: #000000;
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,38 +95,6 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.box {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-.onscreen-page {
-  height: 100%;
-  width: 100%;
-  background: #000000;
-  position: absolute;
-  top:0;
-  -webkit-transition: all 2s, -webkit-transform 2s;
-  transition: all 2s, transform 2s;
-}
-
-.offscreen-page  {
-  height: 100%;
-  width: 100%;
-  background: #000000;
-  position: absolute;
-  top:100%;
-  -webkit-transition: all 2s, -webkit-transform 2s;
-  transition: all 2s, transform 2s; 
-}
-
-.box .moved-into-place {
-  /* position: absolute; */
-  top: 0;
-  opacity: 1;
 }
 
 .landing-footer {
