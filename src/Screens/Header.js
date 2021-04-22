@@ -242,7 +242,7 @@ function Header(props) {
             <Modal isVisible={modal}>{showSearch()}</Modal>
           </div>
 
-          <div className="d-none d-sm-inline-block">
+          <div className="d-none d-md-inline-block">
             <div className="d-flex" style={{ float: "right" }}>
               <IconButton
                 href="/Home"
