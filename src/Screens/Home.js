@@ -21,7 +21,7 @@ import SwipeSlide from "./SwipeSlide";
 import KingIcon from "../Images/KingIcon.png";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AssistantPhotoIcon from "@material-ui/icons/AssistantPhoto";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import DeviceHubIcon from "@material-ui/icons/DeviceHub";
 import { uuid } from "uuidv4";
 
@@ -167,8 +167,8 @@ const MobileViewWelcomeHomeScreen4 = () => {
       onTap={() => cycle()}
       className="Introduction-name-small d-sm-none ml-2"
     >
-      Scroll down
-      <ArrowDownwardIcon /> to experience how
+      Scroll up
+      <ArrowUpwardIcon /> to experience how
     </motion.div>
   );
 };
@@ -332,8 +332,8 @@ const WelcomeHomeScreenMsg4 = () => {
           onTap={() => cycle()}
           className="Introduction-name d-none d-sm-inline-block"
         >
-          Scroll down
-          <ArrowDownwardIcon /> to experience how
+          Scroll up
+          <ArrowUpwardIcon /> to experience how
         </motion.div>
         <MobileViewWelcomeHomeScreen4 />
       </Wobble>

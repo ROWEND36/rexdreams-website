@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
     background: "#000000",
+    // display: "none",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -84,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header(props) {
+function Header() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -242,15 +243,20 @@ function Header(props) {
             <Modal isVisible={modal}>{showSearch()}</Modal>
           </div>
 
-          <div className="d-none d-md-inline-block">
-            <div className="d-flex" style={{ float: "right" }}>
+          {/* <div className="d-none d-md-inline-block"> */}
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+            <div
+              className="d-flex"
+              style={{ float: "right", marginLeft: "20px" }}
+            >
               <IconButton
                 href="/Home"
                 size="large"
                 activeStyle={{ color: "purple" }}
                 aria-label="Home"
                 color="inherit"
-                className="mx-4"
+                className="ml-4 mr-2"
               >
                 <HomeIcon />
               </IconButton>
@@ -259,7 +265,7 @@ function Header(props) {
                 activeStyle={{ color: "purple" }}
                 aria-label="Chats with us and share images"
                 color="inherit"
-                className="mx-4"
+                className="mx-2"
               >
                 <Badge badgeContent={4} color="secondary">
                   <ChatIcon />
@@ -269,7 +275,7 @@ function Header(props) {
                 href="/Pricing"
                 aria-label="Pricing"
                 color="inherit"
-                className="mx-4"
+                className="mx-2"
               >
                 <MonetizationOnIcon />
               </IconButton>
@@ -277,14 +283,13 @@ function Header(props) {
                 href="/Invest"
                 aria-label="Chats with us and share images"
                 color="inherit"
-                className="mx-4"
+                style={{ marginRight: "150px" }}
+                className="ml-2"
               >
                 <AccountBalanceIcon />
               </IconButton>
             </div>
-          </div>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
+
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
