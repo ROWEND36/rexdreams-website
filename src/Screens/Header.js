@@ -17,6 +17,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import HomeIcon from "@material-ui/icons/Home";
+import SignupCard from "./SignupCard";
 import logo from "../Images/logo.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -121,8 +122,7 @@ function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <SignupCard/>
     </Menu>
   );
 
