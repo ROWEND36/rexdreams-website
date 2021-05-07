@@ -23,7 +23,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import AssistantPhotoIcon from "@material-ui/icons/AssistantPhoto";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import DeviceHubIcon from "@material-ui/icons/DeviceHub";
-import { uuid } from "uuidv4";
+import { v4 as uuid } from "uuid";
 
 const MobileViewWelcome1stHalf = () => {
   const x = useMotionValue(0);
