@@ -10,7 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import ChatIcon from "@material-ui/icons/Chat";
-import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
+import InfoIcon from '@material-ui/icons/Info';
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
@@ -158,7 +158,7 @@ function Header() {
         </MenuItem>
         <MenuItem>
           <IconButton aria-label="Pricing" color="secondary" href="/Price">
-            <MonetizationOnIcon />
+            <InfoIcon />
           </IconButton>
           <p style={{ color: "white", margin: "0px 10px" }}>Pricing</p>
         </MenuItem>
@@ -277,7 +277,7 @@ function Header() {
                 color="inherit"
                 className="mx-2"
               >
-                <MonetizationOnIcon />
+                <InfoIcon />
               </IconButton>
               <IconButton
                 href="/Invest"
