@@ -272,8 +272,8 @@ function Header() {
                 </Badge>
               </IconButton>
               <IconButton
-                href="/Pricing"
-                aria-label="Pricing"
+                href="/About"
+                aria-label="About us"
                 color="inherit"
                 className="mx-2"
               >
