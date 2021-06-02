@@ -16,13 +16,11 @@ import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme( {
  
- 
-
 });
 
  const useStyles = makeStyles((about) => ({
    hero: {
-     backgroundImage:  `url("Dreams.png")`,
+     backgroundImage:  `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Dreams.png")`,
      height: "500px",
      backgroundPosition: "center",
      backgroundRepeat: "no-repeat",
@@ -33,6 +31,8 @@ const theme = createMuiTheme( {
      alignItems: "center",
      color: "#778899",
      fontSize: "6rem",
+     fontFamily: 'Verdana',
+     fontWeight: 500,
    },
 
    body: {
@@ -41,8 +41,12 @@ const theme = createMuiTheme( {
    },
 
    title: {
-     fontWeight: 900,
-     paddingBottom: theme.spacing(3)
+     fontWeight: 600,
+     paddingBottom: theme.spacing(3),
+     fontStyle: "oblique",
+     fontFamily: 'Arial',
+     color: "#778899",
+     paddingTop: theme.spacing(3)
    },
 
    card: {
@@ -74,31 +78,26 @@ function About() {
 
   return (
        <div className="App">
-       
-    
-
-
-         <Box className={classes.hero}>
-       
+     <Box className={classes.hero}>
            <Box>About Us</Box>
-        </Box>
+      </Box>
 
 <Container maxWidth="lg" className={classes.body} >
-       <Typography variant="h4" className={classes.title} data-aos="fade-right" align="center" >
+       <Typography variant="h4" className={classes.title} data-aos="zoom-in" align="center" >
           Who We Are
        </Typography>
 
-      <Card data-aos= "fade-down" className="shadow bg-secondary" >
+    <Card data-aos= "zoom-out-up" className="shadow bg-secondary" >
        <CardActionArea>
         <CardMedia
+          component="img"
           sx={{ height: 140 }}
-          image ="https://unsplash.com/photos/M1WH70wCndU"
-          title="ios"
-        />
+          image="Rdr.png"
+           title="REXDREAMS"
+           />
       <CardContent>
       <Typography
-          variant="h5"
-                           >
+          variant="h5" >
         We at REXDREAMS are passionate about building cost effective and user-friendly
         native WebApps and Mobile Apps for Andriod and IOS devices
         We deliver beautiful and high quality designs, strive to deliver the best at the most affordable
@@ -106,21 +105,21 @@ function About() {
       </Typography>
       </CardContent>
       </CardActionArea>
-      </Card>
+   </Card>
 
-        <Typography variant="h4" className={classes.title} data-aos="fade-right" paddingTop="10" >
+        <Typography variant="h4" className={classes.title} data-aos="zoom-in-up" paddingTop="10" >
           What We Do
        </Typography>
 
 
  <Grid container spacing={3} >
          <Grid item xs={12} sm={6} md ={4} >
-           <Card data-aos= "fade-up" sx={{ maxWidth: 345 }} className="shadow bg-secondary" >
+           <Card data-aos= "zoom-in-up" sx={{ maxWidth: 345 }} className="shadow bg-secondary" >
       <CardActionArea>
         <CardMedia
           component="img"
           sx={{ height: 140 }}
-          image="https://unsplash.com/photos/iFSvn82XfGo"
+          image="Web.jpg"
           title="WebApp"
         />
         <CardContent>
@@ -137,12 +136,12 @@ function About() {
 </Grid>
 
  <Grid item xs={12} sm={6} md ={4} >
-           <Card data-aos= "flip-left" sx={{ maxWidth: 345 }} className="shadow bg-secondary">
+           <Card data-aos= "zoom-in-up" sx={{ maxWidth: 345 }} className="shadow bg-secondary">
       <CardActionArea>
         <CardMedia
           component="img"
           sx={{ height: 140 }}
-          image="https://unsplash.com/photos/HfWA-Axq6Ek"
+          image="Android.jpg"
           title="Android"
         />
         <CardContent>
@@ -158,15 +157,14 @@ function About() {
     </Card>
 </Grid>
 
-
 <Grid item xs={12} sm={6} md ={4} >
-      <Card data-aos= "fade-down" sx={{ maxWidth: 345 }} className="shadow bg-secondary" >
+      <Card data-aos= "fade-down-left" sx={{ maxWidth: 345 }} className="shadow bg-secondary" >
       <CardActionArea>
         <CardMedia
           component="img"
           alt="ios"
           sx={{ height: 140 }}
-          image ="../Images/Dreams.png"
+          image ="Ios.jpg"
           title="ios"
         />
         <CardContent>
@@ -184,7 +182,7 @@ function About() {
 </Grid>
       
 </Container>
-   <Button  variant="contained" color="primary">
+   <Button  variant="contained" color="primary" data-aos="zoom-in">
         Contact Us
       </Button>
       <Button variant="contained" disabled>
