@@ -93,14 +93,6 @@ function About() {
               image="Rdr.png"
               title="REXDREAMS"
             />
-            <CardContent>
-              <Typography variant="h5">
-                We at REXDREAMS are passionate about building cost effective and
-                user-friendly native WebApps and Mobile Apps for Andriod and IOS
-                devices We deliver beautiful and high quality designs, strive to
-                deliver the best at the most affordable prices.
-              </Typography>
-            </CardContent>
           </CardActionArea>
         </Card>
 
@@ -193,8 +185,38 @@ function About() {
             </Card>
           </Grid>
         </Grid>
+
+        <Typography
+          variant="h4"
+          className={classes.title}
+          data-aos="zoom-in"
+          align="center"
+        >
+          What we offer
+        </Typography>
+        <Grid>
+          <Card data-aos="zoom-out-up" className="shadow bg-secondary">
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                sx={{ height: 140 }}
+                image="offer.png"
+                title="What We Offer"
+              />
+            </CardActionArea>
+          </Card>
+        </Grid>
       </Container>
-      <Button variant="contained" color="primary" data-aos="zoom-in">
+
+      <Button
+        variant="contained"
+        color="primary"
+        data-aos="zoom-in"
+        type=""
+        onClick={() => {
+          alert("contact us");
+        }}
+      >
         Contact Us
       </Button>
       <Button variant="contained" disabled>
