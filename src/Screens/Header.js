@@ -157,10 +157,10 @@ function Header() {
           <p style={{ color: "white", margin: "0px 10px" }}>Chat</p>
         </MenuItem>
         <MenuItem>
-          <IconButton aria-label="Pricing" color="secondary" href="/Price">
+          <IconButton aria-label="About" color="secondary" href="/About">
             <InfoIcon />
+            <p style={{ color: "white", margin: "0px 10px" }}>About</p>
           </IconButton>
-          <p style={{ color: "white", margin: "0px 10px" }}>Pricing</p>
         </MenuItem>
         <MenuItem>
           <IconButton aria-label="Invest" color="secondary" href="/Invest">

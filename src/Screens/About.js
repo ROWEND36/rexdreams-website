@@ -20,6 +20,7 @@ const useStyles = makeStyles((about) => ({
   hero: {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Dreams.png")`,
     height: "500px",
+    width: "100%",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
