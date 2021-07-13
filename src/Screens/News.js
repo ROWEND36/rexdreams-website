@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Box from "@material-ui/core/Box";
-function Invest(props) {
+function News(props) {
   return (
     <Container>
       <Card className="shadow bg-secondary my-4">
@@ -27,4 +27,4 @@ function Invest(props) {
   );
 }
 
-export default Invest;
+export default News;

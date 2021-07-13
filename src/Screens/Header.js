@@ -10,13 +10,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import ChatIcon from "@material-ui/icons/Chat";
-import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import InfoIcon from "@material-ui/icons/Info";
+import RssFeedIcon from "@material-ui/icons/RssFeed";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import HomeIcon from "@material-ui/icons/Home";
+import SignupCard from "./SignupCard";
 import logo from "../Images/logo.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -121,8 +122,7 @@ function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <SignupCard />
     </Menu>
   );
 
@@ -157,14 +157,14 @@ function Header() {
           <p style={{ color: "white", margin: "0px 10px" }}>Chat</p>
         </MenuItem>
         <MenuItem>
-          <IconButton aria-label="Pricing" color="secondary" href="/Price">
-            <MonetizationOnIcon />
+          <IconButton aria-label="About" color="secondary" href="/About">
+            <InfoIcon />
+            <p style={{ color: "white", margin: "0px 10px" }}>About</p>
           </IconButton>
-          <p style={{ color: "white", margin: "0px 10px" }}>Pricing</p>
         </MenuItem>
         <MenuItem>
           <IconButton aria-label="Invest" color="secondary" href="/Invest">
-            <AccountBalanceIcon />
+            <RssFeedIcon />
           </IconButton>
           <p style={{ color: "white", margin: "0px 10px" }}>Invest</p>
         </MenuItem>
@@ -252,13 +252,12 @@ function Header() {
             >
               <IconButton
                 href="/Home"
-                size="large"
                 activeStyle={{ color: "purple" }}
                 aria-label="Home"
                 color="inherit"
                 className="ml-4 mr-2"
               >
-                <HomeIcon />
+                <HomeIcon fontSize="large" />
               </IconButton>
               <IconButton
                 href="/Chat"
@@ -268,25 +267,27 @@ function Header() {
                 className="mx-2"
               >
                 <Badge badgeContent={4} color="secondary">
-                  <ChatIcon />
+                  <ChatIcon fontSize="large" />
                 </Badge>
               </IconButton>
               <IconButton
-                href="/Pricing"
-                aria-label="Pricing"
+                href="/About"
+                fontSize="large"
+                aria-label="About us"
                 color="inherit"
                 className="mx-2"
               >
-                <MonetizationOnIcon />
+                <InfoIcon fontSize="large" />
               </IconButton>
               <IconButton
-                href="/Invest"
+                href="/News Feed"
+                fontSize="large"
                 aria-label="Chats with us and share images"
                 color="inherit"
                 style={{ marginRight: "150px" }}
                 className="ml-2"
               >
-                <AccountBalanceIcon />
+                <RssFeedIcon fontSize="large" />
               </IconButton>
             </div>
 

@@ -1,5 +1,5 @@
 import "./App.scss";
-import "fontsource-roboto";
+import "@fontsource/roboto"; // Defaults to weight 400
 import React from "react";
 import { Provider } from "react-redux";
 import PropTypes from "prop-types";
