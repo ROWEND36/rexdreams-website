@@ -10,7 +10,7 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import Zoom from "@material-ui/core/Zoom";
-import Home from "./Screens/Home";
+import Home from "./Screens/Home/Home";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Store from "./Components/Redux/Store";
 import Header from "./Screens/Header";
@@ -64,7 +64,10 @@ ScrollToTop.propTypes = {
 };
 const theme = createMuiTheme({
   palette: {
-    mode: "dark",
+    type: "dark",
+    primary: {
+      main: "#121212",
+    },
   },
 });
 export default function App(props) {

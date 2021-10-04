@@ -127,7 +127,7 @@
   opacity: 0;
   border-radius: 50%;
   top: 100%;
- }
+}
 
 .box .moved-into-place {
   /* position: absolute; */
@@ -153,13 +153,13 @@
 #parent-center {
   position: center;
 }
-.child-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-}
+// .child-center {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   display: flex;
+// }
 
 body {
   margin: 0;

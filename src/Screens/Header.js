@@ -19,6 +19,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import HomeIcon from "@material-ui/icons/Home";
 import SignupCard from "./SignupCard";
 import logo from "../Images/logo.png";
+import { ButtonBase } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -218,7 +219,7 @@ function Header() {
     <div>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton
+          <ButtonBase
             href="/Home"
             edge="start"
             className={classes.menuButton}
@@ -226,7 +227,7 @@ function Header() {
             aria-label="open drawer"
           >
             <img alt="logo" src={logo} height="50px" width="50px" />
-          </IconButton>
+          </ButtonBase>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon

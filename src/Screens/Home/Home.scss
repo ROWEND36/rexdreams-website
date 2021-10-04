@@ -1,0 +1,13 @@
+.swipeContainer {
+  // scroll-snap-type: y mandatory;
+  overflow: auto;
+  height: calc(100vh - 56px);
+  flex-basis: auto;
+  flex-grow: 1;
+}
+.swipeContainer__child {
+  // scroll-snap-align: center;
+  // scroll-snap-stop: always;
+  height: 100%;
+  width: 100%;
+}
