@@ -217,11 +217,7 @@ function Header() {
   return (
     <div>
       <AppBar position="fixed">
-        <Toolbar
-          style={{
-            background: "black",
-          }}
-        >
+        <Toolbar>
           <IconButton
             href="/Home"
             edge="start"
