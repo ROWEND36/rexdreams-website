@@ -7,15 +7,11 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Box from "@material-ui/core/Box";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import Zoom from "@material-ui/core/Zoom";
-import "./App.scss";
-import History from "./Components/History";
-import { BrowserRouter } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Routers from "./Components/Routers";
+import Home from "./Screens/Home";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Store from "./Components/Redux/Store";
 import Header from "./Screens/Header";
 
@@ -27,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScrollTop(props) {
+function ScrollToTop(props) {
   const { children, window } = props;
   const classes = useStyles();
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -58,7 +54,7 @@ function ScrollTop(props) {
   );
 }
 
-ScrollTop.propTypes = {
+ScrollToTop.propTypes = {
   children: PropTypes.element.isRequired,
   /**
    * Injected by the documentation to work in an iframe.
@@ -66,8 +62,12 @@ ScrollTop.propTypes = {
    */
   window: PropTypes.func,
 };
-
-export default function BackToTop(props) {
+const theme = createMuiTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+export default function App(props) {
   React.useEffect(() => {
     var s1 = document.createElement("script"),
       s0 = document.getElementsByTagName("script")[0];
@@ -79,28 +79,24 @@ export default function BackToTop(props) {
   });
   return (
     <React.Fragment>
-      <CssBaseline />
-      <Provider store={Store}>
-        <BrowserRouter history={History}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Provider store={Store}>
           <Header />
-          <Toolbar id="back-to-top-anchor" style={{ background: "black" }} />
-          <div className="App">
-            <header className="App-header">
-              <Routers />
-            </header>
-          </div>
-        </BrowserRouter>
-      </Provider>
-      <ScrollTop {...props}>
-        <Fab
-          color="secondary"
-          size="small"
-          aria-label="scroll back to top"
-          style={{ marginBottom: "120px" }}
-        >
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
+          <Toolbar id="back-to-top-anchor" />
+        </Provider>
+        <Home />
+        <ScrollToTop>
+          <Fab
+            color="secondary"
+            size="small"
+            aria-label="scroll back to top"
+            style={{ marginBottom: "120px" }}
+          >
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </ScrollToTop>
+      </ThemeProvider>
     </React.Fragment>
   );
 }

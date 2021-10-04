@@ -4,7 +4,7 @@ import "./index.css";
 import "./App.scss";
 import RootRouter from "./Components/RootRouter";
 import reportWebVitals from "./reportWebVitals";
-import { Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import History from "./Components/History";
 
 ReactDOM.render(

@@ -1,0 +1,6 @@
+.swipeContainer{
+    scroll-snap-type: y mandatory;
+}
+.swipeContainer__child{
+    scroll-snap-align: start;
+}

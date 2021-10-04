@@ -16,14 +16,15 @@ import Spin from "react-reveal/Spin";
 import Wobble from "react-reveal/Wobble";
 import config from "react-reveal/globals";
 import Box from "@material-ui/core/Box";
-import "../App.css";
-import SwipeSlide from "./SwipeSlide";
+import "../App.scss";
 import KingIcon from "../Images/KingIcon.png";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AssistantPhotoIcon from "@material-ui/icons/AssistantPhoto";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import DeviceHubIcon from "@material-ui/icons/DeviceHub";
 import { v4 as uuid } from "uuid";
+import scrollSnapPolyfill from "css-scroll-snap-polyfill";
+import { Paper } from "@material-ui/core";
 
 const MobileViewWelcome1stHalf = () => {
   const x = useMotionValue(0);
@@ -381,30 +382,32 @@ function ClickSlide({ pages, id, className }) {
     </div>
   );
 }
-
+document.addEventListener("DOMContentLoaded", scrollSnapPolyfill);
 function Home() {
   return (
-    <SwipeSlide className="box">
-      <ClickSlide id="stay-in-place" className="onscreen-page" pages={pages} />
-      <div className="onscreen-page">
-        <Box m={4}>
-          <h2>YES, we can</h2>
-          <footer className="landing-footer bg-secondary"></footer>
-        </Box>
+    <Paper>
+      <div className="swipeContainer">
+        <ClickSlide id="swipeContainer__child" pages={pages} />
+        <div className="swipeContainer__child">
+          <Box m={4}>
+            <h2>YES, we can</h2>
+            <footer className="landing-footer bg-secondary"></footer>
+          </Box>
+        </div>
+        <div className="swipeContainer__child">
+          <Box m={4}>
+            <h2>2</h2>
+            <footer className="landing-footer bg-secondary"></footer>
+          </Box>
+        </div>
+        <div className="swipeContainer__child">
+          <Box m={4}>
+            <h2>3</h2>
+            <footer className="landing-footer bg-secondary"></footer>
+          </Box>
+        </div>
       </div>
-      <div className="onscreen-page">
-        <Box m={4}>
-          <h2>2</h2>
-          <footer className="landing-footer bg-secondary"></footer>
-        </Box>
-      </div>
-      <div className="onscreen-page">
-        <Box m={4}>
-          <h2>3</h2>
-          <footer className="landing-footer bg-secondary"></footer>
-        </Box>
-      </div>
-    </SwipeSlide>
+    </Paper>
   );
 }
 
