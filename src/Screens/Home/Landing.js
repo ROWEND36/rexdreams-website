@@ -11,359 +11,359 @@ import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import DeviceHubIcon from "@material-ui/icons/DeviceHub";
 import { useRef, useState, useCallback, useEffect } from "react";
 import { Box } from "@material-ui/core";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+// const MobileViewWelcome1stHalf = () => {
+//   const x = useMotionValue(0);
+//   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+//   const [animate, cycle] = useCycle(
+//     { scale: 0, rotate: 0 },
+//     { scale: 1.0, rotate: 360 }
+//   );
+//   return (
+//     <motion.div
+//       drag={"x"}
+//       x={x}
+//       scale={scale}
+//       dragConstraints={{
+//         left: -100,
+//         right: 100,
+//         top: -100,
+//         bottom: 100,
+//       }}
+//       animate={animate}
+//       transition={{ duration: 10 }}
+//       onTap={() => cycle()}
+//       className="Introduction-name-small d-sm-none"
+//     >
+//       Welcome
+//     </motion.div>
+//   );
+// };
+// const MobileViewWelcome2ndHalf = () => {
+//   const x = useMotionValue(0);
+//   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+//   const [animate, cycle] = useCycle(
+//     { scale: 0, rotate: 0 },
+//     { scale: 1.0, rotate: 360 }
+//   );
+//   return (
+//     <motion.div
+//       drag={"x"}
+//       x={x}
+//       scale={scale}
+//       dragConstraints={{
+//         left: -100,
+//         right: 100,
+//         top: -100,
+//         bottom: 100,
+//       }}
+//       animate={animate}
+//       transition={{ duration: 10 }}
+//       onTap={() => cycle()}
+//       className="Introduction-name-small d-sm-none ml-2"
+//     >
+//       Rexer{/* find a more suitable icon later on */}
+//       <img
+//         src={KingIcon}
+//         style={{ background: "gray", borderRadius: "50%" }}
+//         height="50px"
+//         width="50px"
+//         alt="kingIcon"
+//       />{" "}
+//       !
+//     </motion.div>
+//   );
+// };
+//
+// const MobileViewWelcomeHomeScreen2 = () => {
+//   const x = useMotionValue(0);
+//   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+//   const [animate, cycle] = useCycle(
+//     { scale: 0, rotate: 0 },
+//     { scale: 1.0, rotate: 360 }
+//   );
+//   return (
+//     <motion.div
+//       drag={"x"}
+//       x={x}
+//       scale={scale}
+//       dragConstraints={{
+//         left: -100,
+//         right: 100,
+//         top: -100,
+//         bottom: 100,
+//       }}
+//       animate={animate}
+//       transition={{ duration: 10 }}
+//       onTap={() => cycle()}
+//       className="Introduction-name-small d-sm-none ml-2"
+//     >
+//       Let's create <SettingsIcon /> your dreams together
+//       <AssistantPhotoIcon />
+//     </motion.div>
+//   );
+// };
+// const MobileViewWelcomeHomeScreen3 = () => {
+//   const x = useMotionValue(0);
+//   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+//   const [animate, cycle] = useCycle(
+//     { scale: 0, rotate: 0 },
+//     { scale: 1.0, rotate: 360 }
+//   );
+//   return (
+//     <motion.div
+//       drag={"x"}
+//       x={x}
+//       scale={scale}
+//       dragConstraints={{
+//         left: -100,
+//         right: 100,
+//         top: -100,
+//         bottom: 100,
+//       }}
+//       animate={animate}
+//       transition={{ duration: 10 }}
+//       onTap={() => cycle()}
+//       className="Introduction-name-small d-sm-none ml-2"
+//     >
+//       We can bring your idea to life
+//       <DeviceHubIcon />
+//     </motion.div>
+//   );
+// };
+// const MobileViewWelcomeHomeScreen4 = () => {
+//   const x = useMotionValue(0);
+//   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+//   const [animate, cycle] = useCycle(
+//     { scale: 1.5, rotate: 0 },
+//     { scale: 1.0, rotate: 360 }
+//   );
+//   return (
+//     <motion.div
+//       drag={"x"}
+//       x={x}
+//       scale={scale}
+//       dragConstraints={{
+//         left: -100,
+//         right: 100,
+//         top: -100,
+//         bottom: 100,
+//       }}
+//       animate={animate}
+//       transition={{ duration: 10 }}
+//       onTap={() => cycle()}
+//       className="Introduction-name-small d-sm-none ml-2"
+//     >
+//       Scroll up
+//       <ArrowUpwardIcon /> to experience how
+//     </motion.div>
+//   );
+// };
 
-const MobileViewWelcome1stHalf = () => {
-  const x = useMotionValue(0);
-  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
-  const [animate, cycle] = useCycle(
-    { scale: 0, rotate: 0 },
-    { scale: 1.0, rotate: 360 }
-  );
-  return (
-    <motion.div
-      drag={"x"}
-      x={x}
-      scale={scale}
-      dragConstraints={{
-        left: -100,
-        right: 100,
-        top: -100,
-        bottom: 100,
-      }}
-      animate={animate}
-      transition={{ duration: 10 }}
-      onTap={() => cycle()}
-      className="Introduction-name-small d-sm-none"
-    >
-      Welcome
-    </motion.div>
-  );
-};
-const MobileViewWelcome2ndHalf = () => {
-  const x = useMotionValue(0);
-  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
-  const [animate, cycle] = useCycle(
-    { scale: 0, rotate: 0 },
-    { scale: 1.0, rotate: 360 }
-  );
-  return (
-    <motion.div
-      drag={"x"}
-      x={x}
-      scale={scale}
-      dragConstraints={{
-        left: -100,
-        right: 100,
-        top: -100,
-        bottom: 100,
-      }}
-      animate={animate}
-      transition={{ duration: 10 }}
-      onTap={() => cycle()}
-      className="Introduction-name-small d-sm-none ml-2"
-    >
-      Rexer{/* find a more suitable icon later on */}
-      <img
-        src={KingIcon}
-        style={{ background: "gray", borderRadius: "50%" }}
-        height="50px"
-        width="50px"
-        alt="kingIcon"
-      />{" "}
-      !
-    </motion.div>
-  );
-};
+// const WelcomeHomeScreenMsg1 = () => {
+//   config({ ssrFadeout: true });
+//   const x = useMotionValue(0);
+//   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+//   const [animate, cycle] = useCycle(
+//     { scale: 0, rotate: 0 },
+//     { scale: 1.5, rotate: 360 }
+//   );
+//   return (
+//     <Box m={4} className="child-center">
+//       <Bounce ssrFadeout>
+//         <motion.div
+//           drag={"x"}
+//           x={x}
+//           scale={scale}
+//           dragConstraints={{
+//             left: -100,
+//             right: 100,
+//             top: -100,
+//             bottom: 100,
+//           }}
+//           animate={animate}
+//           transition={{ duration: 10 }}
+//           onTap={() => cycle()}
+//           className="Introduction-name d-none d-sm-inline-block"
+//         >
+//           Welcome{" "}
+//         </motion.div>
+//         <MobileViewWelcome1stHalf />
+//       </Bounce>
+//       <RubberBand>
+//         <motion.div
+//           drag={"x"}
+//           x={x}
+//           scale={scale}
+//           dragConstraints={{
+//             left: -100,
+//             right: 100,
+//             top: -100,
+//             bottom: 100,
+//           }}
+//           animate={animate}
+//           transition={{ duration: 10 }}
+//           onTap={() => cycle()}
+//           className="Introduction-name d-none d-sm-inline-block ml-4"
+//         >
+//           Rexer
+//           {/* find a more suitable icon later on */}
+//           <img
+//             src={KingIcon}
+//             style={{ background: "gray", borderRadius: "50%" }}
+//             height="50px"
+//             width="50px"
+//             alt="kingIcon"
+//           />{" "}
+//           !
+//         </motion.div>
+//         <MobileViewWelcome2ndHalf />
+//       </RubberBand>
+//     </Box>
+//   );
+// };
 
-const MobileViewWelcomeHomeScreen2 = () => {
-  const x = useMotionValue(0);
-  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
-  const [animate, cycle] = useCycle(
-    { scale: 0, rotate: 0 },
-    { scale: 1.0, rotate: 360 }
-  );
-  return (
-    <motion.div
-      drag={"x"}
-      x={x}
-      scale={scale}
-      dragConstraints={{
-        left: -100,
-        right: 100,
-        top: -100,
-        bottom: 100,
-      }}
-      animate={animate}
-      transition={{ duration: 10 }}
-      onTap={() => cycle()}
-      className="Introduction-name-small d-sm-none ml-2"
-    >
-      Let's create <SettingsIcon /> your dreams together
-      <AssistantPhotoIcon />
-    </motion.div>
-  );
-};
-const MobileViewWelcomeHomeScreen3 = () => {
-  const x = useMotionValue(0);
-  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
-  const [animate, cycle] = useCycle(
-    { scale: 0, rotate: 0 },
-    { scale: 1.0, rotate: 360 }
-  );
-  return (
-    <motion.div
-      drag={"x"}
-      x={x}
-      scale={scale}
-      dragConstraints={{
-        left: -100,
-        right: 100,
-        top: -100,
-        bottom: 100,
-      }}
-      animate={animate}
-      transition={{ duration: 10 }}
-      onTap={() => cycle()}
-      className="Introduction-name-small d-sm-none ml-2"
-    >
-      We can bring your idea to life
-      <DeviceHubIcon />
-    </motion.div>
-  );
-};
-const MobileViewWelcomeHomeScreen4 = () => {
-  const x = useMotionValue(0);
-  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
-  const [animate, cycle] = useCycle(
-    { scale: 1.5, rotate: 0 },
-    { scale: 1.0, rotate: 360 }
-  );
-  return (
-    <motion.div
-      drag={"x"}
-      x={x}
-      scale={scale}
-      dragConstraints={{
-        left: -100,
-        right: 100,
-        top: -100,
-        bottom: 100,
-      }}
-      animate={animate}
-      transition={{ duration: 10 }}
-      onTap={() => cycle()}
-      className="Introduction-name-small d-sm-none ml-2"
-    >
-      Scroll up
-      <ArrowUpwardIcon /> to experience how
-    </motion.div>
-  );
-};
+// const WelcomeHomeScreenMsg2 = () => {
+//   config({ ssrFadeout: true });
+//   const x = useMotionValue(0);
+//   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+//   const [animate, cycle] = useCycle(
+//     { scale: 0, rotate: 0 },
+//     { scale: 1.5, rotate: 360 }
+//   );
+//   return (
+//     <Box m={4} className="child-center">
+//       <RubberBand ssrFadeout>
+//         <motion.div
+//           drag={"x"}
+//           x={x}
+//           scale={scale}
+//           dragConstraints={{
+//             left: -100,
+//             right: 100,
+//             top: -100,
+//             bottom: 100,
+//           }}
+//           animate={animate}
+//           transition={{ duration: 10 }}
+//           onTap={() => cycle()}
+//           className="Introduction-name d-none d-sm-inline-block"
+//         >
+//           Let's create <SettingsIcon /> your dreams together
+//           <AssistantPhotoIcon />
+//         </motion.div>
+//         <MobileViewWelcomeHomeScreen2 />
+//       </RubberBand>
+//     </Box>
+//   );
+// };
 
-const WelcomeHomeScreenMsg1 = () => {
-  config({ ssrFadeout: true });
-  const x = useMotionValue(0);
-  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
-  const [animate, cycle] = useCycle(
-    { scale: 0, rotate: 0 },
-    { scale: 1.5, rotate: 360 }
-  );
-  return (
-    <Box m={4} className="child-center">
-      <Bounce ssrFadeout>
-        <motion.div
-          drag={"x"}
-          x={x}
-          scale={scale}
-          dragConstraints={{
-            left: -100,
-            right: 100,
-            top: -100,
-            bottom: 100,
-          }}
-          animate={animate}
-          transition={{ duration: 10 }}
-          onTap={() => cycle()}
-          className="Introduction-name d-none d-sm-inline-block"
-        >
-          Welcome{" "}
-        </motion.div>
-        <MobileViewWelcome1stHalf />
-      </Bounce>
-      <RubberBand>
-        <motion.div
-          drag={"x"}
-          x={x}
-          scale={scale}
-          dragConstraints={{
-            left: -100,
-            right: 100,
-            top: -100,
-            bottom: 100,
-          }}
-          animate={animate}
-          transition={{ duration: 10 }}
-          onTap={() => cycle()}
-          className="Introduction-name d-none d-sm-inline-block ml-4"
-        >
-          Rexer
-          {/* find a more suitable icon later on */}
-          <img
-            src={KingIcon}
-            style={{ background: "gray", borderRadius: "50%" }}
-            height="50px"
-            width="50px"
-            alt="kingIcon"
-          />{" "}
-          !
-        </motion.div>
-        <MobileViewWelcome2ndHalf />
-      </RubberBand>
-    </Box>
-  );
-};
+// const WelcomeHomeScreenMsg3 = () => {
+//   config({ ssrFadeout: true });
+//   const x = useMotionValue(0);
+//   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+//   const [animate, cycle] = useCycle(
+//     { scale: 0, rotate: 0 },
+//     { scale: 1.5, rotate: 360 }
+//   );
+//   return (
+//     <Box m={4} className="child-center">
+//       <Spin ssrFadeout>
+//         <motion.div
+//           drag={"x"}
+//           x={x}
+//           scale={scale}
+//           dragConstraints={{
+//             left: -100,
+//             right: 100,
+//             top: -100,
+//             bottom: 100,
+//           }}
+//           animate={animate}
+//           transition={{ duration: 10 }}
+//           onTap={() => cycle()}
+//           className="Introduction-name d-none d-sm-inline-block"
+//         >
+//           We can bring your idea to life
+//           <DeviceHubIcon />
+//         </motion.div>
+//         <MobileViewWelcomeHomeScreen3 />
+//       </Spin>
+//     </Box>
+//   );
+// };
 
-const WelcomeHomeScreenMsg2 = () => {
-  config({ ssrFadeout: true });
-  const x = useMotionValue(0);
-  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
-  const [animate, cycle] = useCycle(
-    { scale: 0, rotate: 0 },
-    { scale: 1.5, rotate: 360 }
-  );
-  return (
-    <Box m={4} className="child-center">
-      <RubberBand ssrFadeout>
-        <motion.div
-          drag={"x"}
-          x={x}
-          scale={scale}
-          dragConstraints={{
-            left: -100,
-            right: 100,
-            top: -100,
-            bottom: 100,
-          }}
-          animate={animate}
-          transition={{ duration: 10 }}
-          onTap={() => cycle()}
-          className="Introduction-name d-none d-sm-inline-block"
-        >
-          Let's create <SettingsIcon /> your dreams together
-          <AssistantPhotoIcon />
-        </motion.div>
-        <MobileViewWelcomeHomeScreen2 />
-      </RubberBand>
-    </Box>
-  );
-};
+// const WelcomeHomeScreenMsg4 = () => {
+//   config({ ssrFadeout: true });
+//   const x = useMotionValue(0);
+//   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
+//   const [animate, cycle] = useCycle(
+//     { scale: 1.3, rotate: 0 },
+//     { scale: 1.0, rotate: 360 }
+//   );
+//   return (
+//     <Box m={4} className="child-center">
+//       <Wobble ssrFadeout>
+//         <motion.div
+//           drag={"x"}
+//           x={x}
+//           scale={scale}
+//           dragConstraints={{
+//             left: -100,
+//             right: 100,
+//             top: -100,
+//             bottom: 100,
+//           }}
+//           animate={animate}
+//           transition={{ duration: 10 }}
+//           onTap={() => cycle()}
+//           className="Introduction-name d-none d-sm-inline-block"
+//         >
+//           Scroll up
+//           <ArrowUpwardIcon /> to experience how
+//         </motion.div>
+//         <MobileViewWelcomeHomeScreen4 />
+//       </Wobble>
+//     </Box>
+//   );
+// };
 
-const WelcomeHomeScreenMsg3 = () => {
-  config({ ssrFadeout: true });
-  const x = useMotionValue(0);
-  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
-  const [animate, cycle] = useCycle(
-    { scale: 0, rotate: 0 },
-    { scale: 1.5, rotate: 360 }
-  );
-  return (
-    <Box m={4} className="child-center">
-      <Spin ssrFadeout>
-        <motion.div
-          drag={"x"}
-          x={x}
-          scale={scale}
-          dragConstraints={{
-            left: -100,
-            right: 100,
-            top: -100,
-            bottom: 100,
-          }}
-          animate={animate}
-          transition={{ duration: 10 }}
-          onTap={() => cycle()}
-          className="Introduction-name d-none d-sm-inline-block"
-        >
-          We can bring your idea to life
-          <DeviceHubIcon />
-        </motion.div>
-        <MobileViewWelcomeHomeScreen3 />
-      </Spin>
-    </Box>
-  );
-};
+// const pages = [
+//   () => {
+//     return <WelcomeHomeScreenMsg1 />;
+//   },
+//   () => {
+//     return <WelcomeHomeScreenMsg2 />;
+//   },
+//   () => {
+//     return <WelcomeHomeScreenMsg3 />;
+//   },
+//   () => {
+//     return <WelcomeHomeScreenMsg4 />;
+//   },
+// ];
 
-const WelcomeHomeScreenMsg4 = () => {
-  config({ ssrFadeout: true });
-  const x = useMotionValue(0);
-  const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
-  const [animate, cycle] = useCycle(
-    { scale: 1.3, rotate: 0 },
-    { scale: 1.0, rotate: 360 }
-  );
-  return (
-    <Box m={4} className="child-center">
-      <Wobble ssrFadeout>
-        <motion.div
-          drag={"x"}
-          x={x}
-          scale={scale}
-          dragConstraints={{
-            left: -100,
-            right: 100,
-            top: -100,
-            bottom: 100,
-          }}
-          animate={animate}
-          transition={{ duration: 10 }}
-          onTap={() => cycle()}
-          className="Introduction-name d-none d-sm-inline-block"
-        >
-          Scroll up
-          <ArrowUpwardIcon /> to experience how
-        </motion.div>
-        <MobileViewWelcomeHomeScreen4 />
-      </Wobble>
-    </Box>
-  );
-};
+export default function Landing({ id, className }) {
+  const sliderRef = useRef();
 
-const pages = [
-  () => {
-    return <WelcomeHomeScreenMsg1 />;
-  },
-  () => {
-    return <WelcomeHomeScreenMsg2 />;
-  },
-  () => {
-    return <WelcomeHomeScreenMsg3 />;
-  },
-  () => {
-    return <WelcomeHomeScreenMsg4 />;
-  },
-];
-export default function Landing({ pages, id, className }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const timeout = useRef(0);
   const gotoNextSlide = useCallback(() => {
-    timeout.current = null;
-    if (currentSlide + 1 < pages.length) setCurrentSlide(currentSlide + 1);
-  }, [currentSlide, pages.length]);
+    const slider = sliderRef.current;
+    slider.slickNext();
+  }, [sliderRef]);
 
-  useEffect(() => {
-    timeout.current = setTimeout(gotoNextSlide, 11000);
-  }, [gotoNextSlide]);
-
-  const onClick = useCallback(() => {
-    if (timeout.current) {
-      clearTimeout(timeout.current);
-      timeout.current = setTimeout(gotoNextSlide, 22000);
-    }
-  }, [gotoNextSlide]);
-
+  const settings = {
+    dots: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
-    <div id={id} className={className} onClick={onClick}>
-      {pages[currentSlide]()}
+    <div id={id} onClick={gotoNextSlide} className={className}>
+      <Slider ref={sliderRef} {...settings}>
+        <div>Hello</div>
+      </Slider>
     </div>
   );
 }

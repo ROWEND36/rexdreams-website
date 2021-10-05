@@ -19,7 +19,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import HomeIcon from "@material-ui/icons/Home";
 import SignupCard from "./SignupCard";
 import logo from "../Images/logo.png";
-import { ButtonBase } from "@material-ui/core";
+import { ButtonBase, useScrollTrigger } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header() {
+const Header = function ({ window }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -214,10 +214,14 @@ function Header() {
     );
   };
   const [modal, setModal] = useState(false);
-
+  const atTopOfScreen = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
   return (
     <div>
-      <AppBar position="fixed">
+      <AppBar elevation={atTopOfScreen ? 0 : 4} position="fixed">
         <Toolbar>
           <ButtonBase
             href="/Home"
@@ -326,5 +330,5 @@ function Header() {
       {renderMenu}
     </div>
   );
-}
+};
 export default Header;

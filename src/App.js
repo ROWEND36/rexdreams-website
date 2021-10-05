@@ -11,7 +11,8 @@ import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import Zoom from "@material-ui/core/Zoom";
 import Home from "./Screens/Home/Home";
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
+import darkTheme from "./Screens/DarkTheme";
 import Store from "./Components/Redux/Store";
 import Header from "./Screens/Header";
 
@@ -29,13 +30,13 @@ function ScrollToTop(props) {
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
   // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
+  const scrolledDown = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
     threshold: 100,
   });
 
-  const handleClick = (event) => {
+  const scrollBackToTop = (event) => {
     const anchor = (event.target.ownerDocument || document).querySelector(
       "#back-to-top-anchor"
     );
@@ -46,8 +47,12 @@ function ScrollToTop(props) {
   };
 
   return (
-    <Zoom in={trigger}>
-      <div onClick={handleClick} role="presentation" className={classes.root}>
+    <Zoom in={scrolledDown}>
+      <div
+        onClick={scrollBackToTop}
+        role="presentation"
+        className={classes.root}
+      >
         {children}
       </div>
     </Zoom>
@@ -62,14 +67,6 @@ ScrollToTop.propTypes = {
    */
   window: PropTypes.func,
 };
-const theme = createMuiTheme({
-  palette: {
-    type: "dark",
-    primary: {
-      main: "#121212",
-    },
-  },
-});
 export default function App(props) {
   React.useEffect(() => {
     var s1 = document.createElement("script"),
@@ -82,7 +79,7 @@ export default function App(props) {
   });
   return (
     <React.Fragment>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Provider store={Store}>
           <Header />
