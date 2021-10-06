@@ -27,8 +27,24 @@ const useStyles = makeStyles((theme) => ({
     background: "#000000",
     // display: "none",
   },
+  menu: {
+    "& .MuiMenuItem-root": {
+      paddingLeft: theme.spacing(0),
+      minWidth: "200px",
+    },
+  },
   menuButton: {
     marginRight: theme.spacing(2),
+  },
+  menuItemBottomRow: {
+    display: "flex",
+    flexDirection: "row",
+    alignContent: "end",
+    paddingLeft: theme.spacing(1),
+    paddingTop: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0),
+    paddingRight: theme.spacing(1),
+    justifyContent: "space-between",
   },
   title: {
     display: "none",
@@ -87,16 +103,89 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const MobileMenu = ({ anchorEl, onProfileMenuClick, onClose, id }) => {
+  const classes = useStyles();
+  const isMobileMenuOpen = Boolean(anchorEl);
+
+  return (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      id={id}
+      keepMounted
+      className={classes.menu}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={isMobileMenuOpen}
+      onClose={onClose}
+    >
+      {
+        <div>
+          <MenuItem>
+            <IconButton aria-label="Home" href="/Home">
+              <HomeIcon />
+            </IconButton>
+            Home
+          </MenuItem>
+          <MenuItem>
+            <IconButton
+              aria-label="Chats with us and share images"
+              href="/Chat"
+            >
+              <Badge badgeContent={4} color="secondary">
+                <ChatIcon />
+              </Badge>
+            </IconButton>
+            Chat
+          </MenuItem>
+          <MenuItem>
+            <IconButton aria-label="About" href="/About">
+              <InfoIcon />
+            </IconButton>
+            About
+          </MenuItem>
+          <MenuItem divider>
+            <IconButton aria-label="Invest" href="/Invest">
+              <RssFeedIcon />
+            </IconButton>
+            Invest
+          </MenuItem>
+          <div className={classes.menuItemBottomRow}>
+            <IconButton aria-label="show 4 new mails">
+              <Badge badgeContent={4} color="secondary">
+                <MailIcon />
+              </Badge>
+            </IconButton>
+            <IconButton aria-label="show 11 new notifications">
+              <Badge badgeContent={11} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              onClick={onProfileMenuClick}
+              aria-label="account of current user"
+              aria-controls="primary-search-account-menu"
+              aria-haspopup="true"
+            >
+              <AccountCircle />
+            </IconButton>
+          </div>
+        </div>
+      }
+    </Menu>
+  );
+};
 const Header = function ({ window }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+    if (mobileMoreAnchorEl) {
+      setAnchorEl(mobileMoreAnchorEl);
+      setMobileMoreAnchorEl(null);
+    } else setAnchorEl(event.currentTarget);
   };
 
   const handleMobileMenuClose = () => {
@@ -113,7 +202,7 @@ const Header = function ({ window }) {
   };
 
   const menuId = "primary-search-account-menu";
-  const renderMenu = (
+  const renderSignupCard = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -128,79 +217,7 @@ const Header = function ({ window }) {
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <div style={{ backgroundColor: "black" }}>
-        <MenuItem>
-          <IconButton aria-label="Home" color="secondary" href="/Home">
-            <HomeIcon />
-          </IconButton>
-          <p style={{ color: "white", margin: "0px 10px" }}>Home</p>
-        </MenuItem>
-        <MenuItem>
-          <IconButton
-            aria-label="Chats with us and share images"
-            color="secondary"
-            href="/Chat"
-          >
-            <Badge badgeContent={4} color="secondary">
-              <ChatIcon />
-            </Badge>
-          </IconButton>
-          <p style={{ color: "white", margin: "0px 10px" }}>Chat</p>
-        </MenuItem>
-        <MenuItem>
-          <IconButton aria-label="About" color="secondary" href="/About">
-            <InfoIcon />
-            <p style={{ color: "white", margin: "0px 10px" }}>About</p>
-          </IconButton>
-        </MenuItem>
-        <MenuItem>
-          <IconButton aria-label="Invest" color="secondary" href="/Invest">
-            <RssFeedIcon />
-          </IconButton>
-          <p style={{ color: "white", margin: "0px 10px" }}>Invest</p>
-        </MenuItem>
-        <div className="d-flex flex-horizontal justify-content-between">
-          <MenuItem>
-            <IconButton aria-label="show 4 new mails" color="secondary">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-          </MenuItem>
-          <MenuItem>
-            <IconButton
-              aria-label="show 11 new notifications"
-              color="secondary"
-            >
-              <Badge badgeContent={11} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-          </MenuItem>
-          <MenuItem onClick={handleProfileMenuOpen}>
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="primary-search-account-menu"
-              aria-haspopup="true"
-              color="secondary"
-            >
-              <AccountCircle />
-            </IconButton>
-          </MenuItem>
-        </div>
-      </div>
-    </Menu>
-  );
+
   const showSearch = () => {
     return (
       <InputBase
@@ -326,8 +343,13 @@ const Header = function ({ window }) {
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+      <MobileMenu
+        anchorEl={mobileMoreAnchorEl}
+        id={mobileMenuId}
+        onClose={handleMobileMenuClose}
+        onProfileMenuClick={handleProfileMenuOpen}
+      />
+      {renderSignupCard}
     </div>
   );
 };

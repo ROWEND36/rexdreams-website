@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "./App.scss";
-import RootRouter from "./Components/RootRouter";
+import Routes from "./Components/Routes";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import History from "./Components/History";
@@ -10,7 +10,7 @@ import History from "./Components/History";
 ReactDOM.render(
   <React.StrictMode>
     <Router history={History}>
-      <RootRouter />
+      <Routes />
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
