@@ -18,7 +18,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import HomeIcon from "@material-ui/icons/Home";
 import SignupCard from "./SignupCard";
-import logo from "../Images/logo.png";
+import logo from "../../Images/logo.png";
 import { ButtonBase, useScrollTrigger } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -176,24 +176,22 @@ const MobileMenu = ({ anchorEl, onProfileMenuClick, onClose, id }) => {
 };
 const Header = function ({ window }) {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [signupAnchorEl, setSignupMenuAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
-
-  const handleProfileMenuOpen = (event) => {
+  const handleSignupMenuOpen = (event) => {
     if (mobileMoreAnchorEl) {
-      setAnchorEl(mobileMoreAnchorEl);
+      setSignupMenuAnchorEl(mobileMoreAnchorEl);
       setMobileMoreAnchorEl(null);
-    } else setAnchorEl(event.currentTarget);
+    } else setSignupMenuAnchorEl(event.currentTarget);
   };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
+  const handleSignupMenuClose = () => {
+    setSignupMenuAnchorEl(null);
     handleMobileMenuClose();
   };
 
@@ -201,20 +199,7 @@ const Header = function ({ window }) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = "primary-search-account-menu";
-  const renderSignupCard = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <SignupCard />
-    </Menu>
-  );
+  const signupMenuId = "primary-search-account-menu";
 
   const mobileMenuId = "primary-search-account-menu-mobile";
 
@@ -322,9 +307,9 @@ const Header = function ({ window }) {
             <IconButton
               edge="end"
               aria-label="account of current user"
-              aria-controls={menuId}
+              aria-controls={signupMenuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={handleSignupMenuOpen}
               color="inherit"
             >
               <AccountCircle />
@@ -347,9 +332,13 @@ const Header = function ({ window }) {
         anchorEl={mobileMoreAnchorEl}
         id={mobileMenuId}
         onClose={handleMobileMenuClose}
-        onProfileMenuClick={handleProfileMenuOpen}
+        onProfileMenuClick={handleSignupMenuOpen}
       />
-      {renderSignupCard}
+      <SignupCard
+        anchorEl={signupAnchorEl}
+        id={signupMenuId}
+        onClose={handleSignupMenuClose}
+      />
     </div>
   );
 };

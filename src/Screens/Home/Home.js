@@ -5,10 +5,8 @@ import Landing from "./Landing";
 import "./Home.scss";
 import { useSwipeable } from "react-swipeable";
 import { animate } from "framer-motion";
+import App from "../App/App";
 
-const preventDefault = (e) => {
-  e.preventDefault();
-};
 function Home() {
   const gotoNextSlide = (ev) => {
     gotoSlide(ev, 1);
@@ -60,24 +58,26 @@ function Home() {
   }, [scrollOpts]);
 
   return (
-    <div {...handlers} ref={refPassThrough} className="swipeContainer">
-      <Landing className="swipeContainer__child" />
-      <div className="swipeContainer__child">
-        <Box m={4}>
-          <h2>YES, we can</h2>
-        </Box>
+    <App>
+      <div {...handlers} ref={refPassThrough} className="swipeContainer">
+        <Landing className="swipeContainer__child" />
+        <div className="swipeContainer__child">
+          <Box m={4}>
+            <h2>YES, we can</h2>
+          </Box>
+        </div>
+        <div className="swipeContainer__child">
+          <Box m={4}>
+            <h2>2</h2>
+          </Box>
+        </div>
+        <div className="swipeContainer__child">
+          <Box m={4}>
+            <h2>3</h2>
+          </Box>
+        </div>
       </div>
-      <div className="swipeContainer__child">
-        <Box m={4}>
-          <h2>2</h2>
-        </Box>
-      </div>
-      <div className="swipeContainer__child">
-        <Box m={4}>
-          <h2>3</h2>
-        </Box>
-      </div>
-    </div>
+    </App>
   );
 }
 
