@@ -6,11 +6,16 @@ import "./Home.scss";
 import { useSwipeable } from "react-swipeable";
 import { animate } from "framer-motion";
 import App from "../App/App";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function Home() {
   const gotoNextSlide = (ev) => {
     gotoSlide(ev, 1);
   };
+  useEffect(() => {
+    Aos.init({ duration: 3000 });
+  }, []);
   const gotoPrevSlide = (ev) => {
     gotoSlide(ev, -1);
   };

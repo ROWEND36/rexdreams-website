@@ -1,6 +1,13 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
-import { Grid, makeStyles, Typography, useTheme } from "@material-ui/core";
+import {
+  Button,
+  ButtonBase,
+  Grid,
+  makeStyles,
+  Typography,
+  useTheme,
+} from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Box from "@material-ui/core/Box";
@@ -16,13 +23,39 @@ const useStyles = makeStyles((theme) => ({
     width: 75,
     height: 75,
     display: "inline-block",
+    marginTop: 0,
+    margin: theme.spacing(1),
     [theme.breakpoints.up("sm")]: {
       flexAlign: "center",
     },
   },
+  sectionEnd: {
+    marginBottom: theme.spacing(2),
+  },
+  sectionStart: {
+    marginTop: theme.spacing(2),
+  },
   iconCardImg: {
     width: "100%",
     height: "100%",
+  },
+  textLink: {
+    color: theme.palette.primary.main,
+  },
+  modal: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      padding: theme.spacing(4),
+      paddingTop: theme.spacing(1),
+    },
+    paddingTop: theme.spacing(1),
+    "& .MuiFormControl-root": {
+      margin: theme.spacing(1),
+    },
   },
 }));
 
@@ -56,28 +89,26 @@ function SignupForm({ anchorEl, id, onClose }) {
       transformOrigin={position}
       open={isMenuOpen}
       onClose={onClose}
-      style={{ maxWidth: "300px" }}
     >
-      <Grid container justify="center" alignItems="center">
-        <Grid item xs={2}>
-          <IconCard />
-        </Grid>
-        <Grid item xs={4}>
-          <Typography variant="h4">Let's get started</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <form className={classes.root} noValidate autoComplete="off">
-            <Grid container justify="center" alignItems="center">
-              <Grid item xs={8} md={4}>
-                <TextField label="Email" variant="outlined" />
-              </Grid>
-              <Grid item xs={8} md={4}>
-                <TextField label="Password" variant="outlined" />
-              </Grid>
-            </Grid>
-          </form>
-        </Grid>
-      </Grid>
+      <form className={classes.modal} noValidate autoComplete="off">
+        <IconCard />
+        <Typography className={classes.sectionEnd} variant="h5">
+          Let's get started
+        </Typography>
+        <TextField label="Email" variant="outlined" />
+        <TextField label="Password" variant="outlined" />
+        <Button
+          className={classes.sectionStart}
+          variant="contained"
+          color="primary"
+        >
+          Log In
+        </Button>
+        <div>
+          Don't have an account?{" "}
+          <ButtonBase className={classes.textLink}>Sign up</ButtonBase>
+        </div>
+      </form>
     </Menu>
   );
 }

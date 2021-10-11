@@ -10,8 +10,10 @@ import AssistantPhotoIcon from "@material-ui/icons/AssistantPhoto";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import DeviceHubIcon from "@material-ui/icons/DeviceHub";
 import { useRef, useState, useCallback, useEffect } from "react";
-import { Box } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import Slider from "react-slick";
+import "./Home.scss";
+import landingPageImage from "../../Images/mobile_grayscale.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // const MobileViewWelcome1stHalf = () => {
@@ -345,6 +347,17 @@ import "slick-carousel/slick/slick-theme.css";
 //   },
 // ];
 
+const MobileImage = function () {
+  const styles = {
+    backgroundImage: "url(" + landingPageImage + ")",
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    backgroundPosition: "center",
+    backgroundSize: "",
+  };
+  return <div style={styles}></div>;
+};
 export default function Landing({ id, className }) {
   const sliderRef = useRef();
 
@@ -361,8 +374,23 @@ export default function Landing({ id, className }) {
   };
   return (
     <div id={id} onClick={gotoNextSlide} className={className}>
-      <Slider ref={sliderRef} {...settings}>
-        <div>Hello</div>
+      <Slider className="landingPageSlider-root" ref={sliderRef} {...settings}>
+        <div class="landingPageSlide" style={{ background: "#414141" }}>
+          <MobileImage />
+          <Typography variant="h4">
+            Enter the digital age with <span>Rex Dreams</span>
+          </Typography>
+        </div>
+        <div class="landingPageSlide" style={{ background: "#414141" }}>
+          <MobileImage />
+          <Typography variant="h4">
+            Engage your customers on all platforms
+          </Typography>
+        </div>
+        <div class="landingPageSlide" style={{ background: "#414141" }}>
+          <MobileImage />
+          <Typography variant="h4">Increase</Typography>
+        </div>
       </Slider>
     </div>
   );

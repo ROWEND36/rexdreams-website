@@ -11,10 +11,15 @@
   // scroll-snap-stop: always;
   height: 100%;
   width: 100%;
-  background: black;
-  color: white;
   overflow: hidden;
 }
 .swipeContainer__child:nth-child(even) {
   background-color: #121212;
+}
+.landingPageSlider-root {
+  padding: 90px 50px;
+  text-align: center;
+}
+.landingPageSlider-root .MuiTypography-h4 {
+  line-height: 1.75;
 }
