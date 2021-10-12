@@ -10,12 +10,12 @@ import AssistantPhotoIcon from "@material-ui/icons/AssistantPhoto";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import DeviceHubIcon from "@material-ui/icons/DeviceHub";
 import { useRef, useState, useCallback, useEffect } from "react";
-import { Box, Typography } from "@material-ui/core";
+import { Box, Card, Typography } from "@material-ui/core";
 import Slider from "react-slick";
 import "./Home.scss";
 import landingPageImage from "../../Images/mobile_grayscale.png";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.scss";
+
 // const MobileViewWelcome1stHalf = () => {
 //   const x = useMotionValue(0);
 //   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
@@ -354,7 +354,8 @@ const MobileImage = function () {
     height: "100%",
     position: "absolute",
     backgroundPosition: "center",
-    backgroundSize: "",
+    backgroundSize: "auto 50%",
+    backgroundRepeat: "no-repeat",
   };
   return <div style={styles}></div>;
 };
@@ -373,24 +374,28 @@ export default function Landing({ id, className }) {
     slidesToScroll: 1,
   };
   return (
-    <div id={id} onClick={gotoNextSlide} className={className}>
-      <Slider className="landingPageSlider-root" ref={sliderRef} {...settings}>
-        <div class="landingPageSlide" style={{ background: "#414141" }}>
+    <div
+      id={id}
+      onClick={gotoNextSlide}
+      className={className + " landingPageSlider-root"}
+    >
+      <Slider ref={sliderRef} {...settings}>
+        <Card class="landingPageSlide">
           <MobileImage />
           <Typography variant="h4">
             Enter the digital age with <span>Rex Dreams</span>
           </Typography>
-        </div>
-        <div class="landingPageSlide" style={{ background: "#414141" }}>
+        </Card>
+        <Card class="landingPageSlide">
           <MobileImage />
           <Typography variant="h4">
             Engage your customers on all platforms
           </Typography>
-        </div>
-        <div class="landingPageSlide" style={{ background: "#414141" }}>
+        </Card>
+        <Card class="landingPageSlide">
           <MobileImage />
           <Typography variant="h4">Increase</Typography>
-        </div>
+        </Card>
       </Slider>
     </div>
   );

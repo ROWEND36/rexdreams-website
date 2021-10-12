@@ -17,9 +17,23 @@
   background-color: #121212;
 }
 .landingPageSlider-root {
-  padding: 90px 50px;
-  text-align: center;
+  padding: 20px 50px;
 }
-.landingPageSlider-root .MuiTypography-h4 {
+.landingPageSlide {
+  padding: 90px 50px;
+  height: 100%;
+  text-align: center;
+  position: relative;
+}
+.landingPageSlide .MuiTypography-h4 {
   line-height: 1.75;
+}
+$slick-arrow-color: black;
+$slick-dot-color: #e91e63;
+$slick-dot-color-active: $slick-dot-color;
+@import "./slick-theme.scss";
+.slick-next,
+.slick-prev {
+  width: 35px;
+  height: 35px;
 }

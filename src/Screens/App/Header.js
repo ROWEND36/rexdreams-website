@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     background: "#000000",
     // display: "none",
   },
+  bg: {
+    background: theme.palette.background.default,
+  },
   menu: {
     "& .MuiMenuItem-root": {
       paddingLeft: theme.spacing(0),
@@ -218,12 +221,14 @@ const Header = function ({ window }) {
   const [modal, setModal] = useState(false);
   const atTopOfScreen = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 0,
-    target: window ? window() : undefined,
+    threshold: 100,
+    // target: window ? window() : undefined,
   });
+  console.log(atTopOfScreen);
   return (
     <div>
       <AppBar
+        className={classes.bg}
         color="inherit"
         elevation={atTopOfScreen ? 0 : 4}
         position="fixed"
