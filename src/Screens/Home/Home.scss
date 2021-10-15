@@ -1,7 +1,5 @@
 .swipeContainer {
   // scroll-snap-type: y mandatory;
-  overflow: auto;
-  height: calc(100vh - 64px);
   // flex-basis: auto;
   // flex-grow: 1;
   touch-action: none;
@@ -9,25 +7,21 @@
 .swipeContainer__child {
   // scroll-snap-align: center;
   // scroll-snap-stop: always;
-  height: 100%;
   width: 100%;
   overflow: hidden;
 }
-.swipeContainer__child:nth-child(even) {
-  background-color: #121212;
-}
-.landingPageSlider-root {
-  padding: 20px 50px;
-}
-.landingPageSlide {
-  padding: 90px 50px;
-  height: 100%;
-  text-align: center;
+.parallax-container {
   position: relative;
+  overflow: hidden;
+  font-size: 0;
 }
-.landingPageSlide .MuiTypography-h4 {
-  line-height: 1.75;
+.fullscreen-page {
+  max-height: 700px;
+  height: calc(100vh - 64px);
+  display: flex;
+  justify-content: space-between;
 }
+
 $slick-arrow-color: black;
 $slick-dot-color: #e91e63;
 $slick-dot-color-active: $slick-dot-color;
@@ -36,4 +30,13 @@ $slick-dot-color-active: $slick-dot-color;
 .slick-prev {
   width: 35px;
   height: 35px;
+}
+.slick-next:before,
+.slick-prev:before {
+  width: 35px;
+  height: 35px;
+  font-size: 35px;
+}
+.slick-slide {
+  padding: 10px;
 }

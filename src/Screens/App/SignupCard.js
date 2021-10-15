@@ -1,21 +1,20 @@
-import React from "react";
+import { useState } from "react";
 import Container from "@material-ui/core/Container";
-import {
-  Button,
-  ButtonBase,
-  Grid,
-  makeStyles,
-  Typography,
-  useTheme,
-} from "@material-ui/core";
+import { Button, ButtonBase, makeStyles, Typography } from "@material-ui/core";
+
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Box from "@material-ui/core/Box";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import icon from "../../Images/logo.png";
 import TextField from "@material-ui/core/TextField";
 import Menu from "@material-ui/core/Menu";
-
+import useBreakpoint from "../../Components/useBreakpoint";
+import { signUpEmail, logInEmail } from "../../Components/User";
+const trackChange = function (setValue) {
+  return (ev) => {
+    setValue(ev.target.value);
+  };
+};
 const useStyles = makeStyles((theme) => ({
   iconCard: {
     borderRadius: "50%",
@@ -48,11 +47,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     padding: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      padding: theme.spacing(4),
-      paddingTop: theme.spacing(1),
-    },
+    paddingRight: theme.spacing(4),
+    paddingLeft: theme.spacing(4),
     paddingTop: theme.spacing(1),
+    [theme.breakpoints.up("sm")]: {
+      paddingRight: theme.spacing(4),
+      paddingLeft: theme.spacing(4),
+      paddingBottom: theme.spacing(2),
+    },
     "& .MuiFormControl-root": {
       margin: theme.spacing(1),
     },
@@ -75,11 +77,32 @@ function IconCard({ imageSrc = icon }) {
 function SignupForm({ anchorEl, id, onClose }) {
   const classes = useStyles();
   const isMenuOpen = Boolean(anchorEl);
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useBreakpoint();
+  const { errorText, setErrorText } = useState();
+  const { email, setEmail } = useState();
+  const { password, setPassword } = useState();
+  const { password2, setPassword2 } = useState();
+  const [signingIn, setSigningIn] = useState();
+  const toggleSigningIn = () => {
+    setSigningIn(!signingIn);
+  };
+  const proceed = () => {
+    const data = { email, password };
+
+    if (!signingIn && password !== password2) {
+      return setErrorText("Passwords do not match");
+    }
+    (signingIn ? logInEmail : signUpEmail)({ email, password })
+      .then(() => {})
+      .catch((e) => {
+        setErrorText(e.message);
+      });
+  };
+
   const position = isSmallScreen
     ? { vetical: "center", horizontal: "center" }
     : { vertical: "top", horizontal: "right" };
+
   return (
     <Menu
       anchorEl={isSmallScreen ? null : anchorEl}
@@ -95,18 +118,36 @@ function SignupForm({ anchorEl, id, onClose }) {
         <Typography className={classes.sectionEnd} variant="h5">
           Let's get started
         </Typography>
-        <TextField label="Email" variant="outlined" />
-        <TextField label="Password" variant="outlined" />
+        <TextField
+          onChange={trackChange(setEmail)}
+          label="Email"
+          variant="outlined"
+        />
+        <TextField
+          onChange={trackChange(setPassword)}
+          label="Password"
+          variant="outlined"
+        />
+        {signingIn ? undefined : (
+          <TextField
+            onChange={trackChange(setPassword2)}
+            label="Confirm Password"
+            variant="outlined"
+          />
+        )}
         <Button
-          className={classes.sectionStart}
+          className={`${classes.sectionStart} ${classes.sectionEnd}`}
           variant="contained"
           color="primary"
+          onClick={proceed}
         >
-          Log In
+          Continue
         </Button>
         <div>
-          Don't have an account?{" "}
-          <ButtonBase className={classes.textLink}>Sign up</ButtonBase>
+          {signingIn ? "Don't have an account? " : "Already have an account? "}
+          <ButtonBase className={classes.textLink} onClick={toggleSigningIn}>
+            {signingIn ? "Create an account" : "Log in"}
+          </ButtonBase>
         </div>
       </form>
     </Menu>

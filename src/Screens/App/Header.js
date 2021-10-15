@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { fade, makeStyles } from "@material-ui/core/styles";
+import { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -19,12 +19,11 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import HomeIcon from "@material-ui/icons/Home";
 import SignupCard from "./SignupCard";
 import logo from "../../Images/logo.png";
-import { ButtonBase, useScrollTrigger } from "@material-ui/core";
+import { Box, ButtonBase, useScrollTrigger } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
-    background: "#000000",
     // display: "none",
   },
   bg: {
@@ -58,9 +57,9 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: theme.palette.searchBar.default,
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: theme.palette.searchBar.hover,
     },
     marginRight: theme.spacing(3),
     marginLeft: 0,
@@ -179,9 +178,12 @@ const MobileMenu = ({ anchorEl, onProfileMenuClick, onClose, id }) => {
 };
 const Header = function ({ window }) {
   const classes = useStyles();
-  const [signupAnchorEl, setSignupMenuAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const [signupAnchorEl, setSignupMenuAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [focused, setFocused] = useState(false);
+  const setBlurred = () => {
+    setFocused(false);
+  };
   const handleSignupMenuOpen = (event) => {
     if (mobileMoreAnchorEl) {
       setSignupMenuAnchorEl(mobileMoreAnchorEl);
@@ -214,23 +216,23 @@ const Header = function ({ window }) {
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
+        onFocus={setFocused}
+        onBlur={setBlurred}
         inputProps={{ "aria-label": "search" }}
       />
     );
   };
   const [modal, setModal] = useState(false);
-  const atTopOfScreen = useScrollTrigger({
+  const scrolleddown = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 100,
-    // target: window ? window() : undefined,
+    target: window ? window() : undefined,
   });
-  console.log(atTopOfScreen);
   return (
     <div>
       <AppBar
         className={classes.bg}
         color="inherit"
-        elevation={atTopOfScreen ? 0 : 4}
+        elevation={scrolleddown ? 4 : 0}
         position="fixed"
       >
         <Toolbar>
@@ -243,7 +245,7 @@ const Header = function ({ window }) {
           >
             <img alt="logo" src={logo} height="50px" width="50px" />
           </ButtonBase>
-          <div className={classes.search}>
+          <div elevation={focused ? 4 : 0} className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon
                 onClick={() => {
@@ -269,7 +271,7 @@ const Header = function ({ window }) {
                 color="inherit"
                 className="ml-4 mr-2"
               >
-                <HomeIcon fontSize="large" />
+                <HomeIcon />
               </IconButton>
               <IconButton
                 href="/Chat"
@@ -279,7 +281,7 @@ const Header = function ({ window }) {
                 className="mx-2"
               >
                 <Badge badgeContent={4} color="secondary">
-                  <ChatIcon fontSize="large" />
+                  <ChatIcon />
                 </Badge>
               </IconButton>
               <IconButton
@@ -289,7 +291,7 @@ const Header = function ({ window }) {
                 color="inherit"
                 className="mx-2"
               >
-                <InfoIcon fontSize="large" />
+                <InfoIcon />
               </IconButton>
               <IconButton
                 href="/News Feed"
@@ -299,7 +301,7 @@ const Header = function ({ window }) {
                 style={{ marginRight: "150px" }}
                 className="ml-2"
               >
-                <RssFeedIcon fontSize="large" />
+                <RssFeedIcon />
               </IconButton>
             </div>
 
