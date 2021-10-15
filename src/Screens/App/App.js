@@ -1,6 +1,6 @@
 import "./App.scss";
 import "@fontsource/roboto"; // Defaults to weight 400
-import React from "react";
+import { useEffect, Fragment } from "react";
 import { Provider } from "react-redux";
 import PropTypes from "prop-types";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -67,7 +67,7 @@ ScrollToTop.propTypes = {
   window: PropTypes.func,
 };
 export default function App({ children: rootView }) {
-  React.useEffect(() => {
+  useEffect(() => {
     var s1 = document.createElement("script"),
       s0 = document.getElementsByTagName("script")[0];
     s1.async = true;
@@ -77,7 +77,7 @@ export default function App({ children: rootView }) {
     s0.parentNode.insertBefore(s1, s0);
   });
   return (
-    <React.Fragment>
+    <Fragment>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Provider store={Store}>
@@ -96,6 +96,6 @@ export default function App({ children: rootView }) {
           </Fab>
         </ScrollToTop>
       </ThemeProvider>
-    </React.Fragment>
+    </Fragment>
   );
 }

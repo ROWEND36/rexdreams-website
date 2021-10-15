@@ -1,20 +1,13 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
-import {
-  Button,
-  ButtonBase,
-  Grid,
-  makeStyles,
-  Typography,
-  useTheme,
-} from "@material-ui/core";
+import { Button, ButtonBase, makeStyles, Typography } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Box from "@material-ui/core/Box";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import icon from "../../Images/logo.png";
 import TextField from "@material-ui/core/TextField";
 import Menu from "@material-ui/core/Menu";
+import useBreakpoint from "../../Components/useBreakpoint";
 
 const useStyles = makeStyles((theme) => ({
   iconCard: {
@@ -48,11 +41,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     padding: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      padding: theme.spacing(4),
-      paddingTop: theme.spacing(1),
-    },
+    paddingRight: theme.spacing(4),
+    paddingLeft: theme.spacing(4),
     paddingTop: theme.spacing(1),
+    [theme.breakpoints.up("sm")]: {
+      paddingRight: theme.spacing(8),
+      paddingLeft: theme.spacing(8),
+      paddingBottom: theme.spacing(2),
+    },
     "& .MuiFormControl-root": {
       margin: theme.spacing(1),
     },
@@ -75,8 +71,7 @@ function IconCard({ imageSrc = icon }) {
 function SignupForm({ anchorEl, id, onClose }) {
   const classes = useStyles();
   const isMenuOpen = Boolean(anchorEl);
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useBreakpoint();
   const position = isSmallScreen
     ? { vetical: "center", horizontal: "center" }
     : { vertical: "top", horizontal: "right" };

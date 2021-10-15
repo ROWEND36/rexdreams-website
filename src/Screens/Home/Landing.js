@@ -13,9 +13,23 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { Box, Card, Typography } from "@material-ui/core";
 import Slider from "react-slick";
 import "./Home.scss";
+import { useTheme, makeStyles } from "@material-ui/core/styles";
 import landingPageImage from "../../Images/mobile_grayscale.png";
 import "slick-carousel/slick/slick.scss";
 
+const useStyles = makeStyles((theme) => ({
+  sliderRoot: {
+    padding: `${theme.spacing(4)}px 0`,
+    [theme.breakpoints.down("xs")]: {
+      display: "flex",
+      paddingTop: 0,
+      alignItems: "center",
+      "& .slick-slider": {
+        width: "100%",
+      },
+    },
+  },
+}));
 // const MobileViewWelcome1stHalf = () => {
 //   const x = useMotionValue(0);
 //   const scale = useTransform(x, [-200, 200], [1.5, 0.5]);
@@ -347,21 +361,27 @@ import "slick-carousel/slick/slick.scss";
 //   },
 // ];
 
-const MobileImage = function () {
+const Overlay = function (props) {
   const styles = {
-    backgroundImage: "url(" + landingPageImage + ")",
-    width: "100%",
-    height: "100%",
-    position: "absolute",
+    height: "400px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     backgroundPosition: "center",
     backgroundSize: "auto 50%",
     backgroundRepeat: "no-repeat",
+    zIndex: 0,
   };
-  return <div style={styles}></div>;
+  return (
+    <div className="landingPageSlide" style={styles}>
+      {props.children}
+    </div>
+  );
 };
 export default function Landing({ id, className }) {
   const sliderRef = useRef();
-
+  const theme = useTheme();
+  const classes = useStyles();
   const gotoNextSlide = useCallback(() => {
     const slider = sliderRef.current;
     slider.slickNext();
@@ -370,31 +390,71 @@ export default function Landing({ id, className }) {
   const settings = {
     dots: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "100px",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          centerPadding: "150px",
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 1,
+          centerPadding: "50px",
+        },
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 1,
+          centerMode: false,
+        },
+      },
+    ],
   };
   return (
     <div
       id={id}
       onClick={gotoNextSlide}
-      className={className + " landingPageSlider-root"}
+      className={`${className} ${classes.sliderRoot}`}
     >
       <Slider ref={sliderRef} {...settings}>
-        <Card class="landingPageSlide">
-          <MobileImage />
-          <Typography variant="h4">
-            Enter the digital age with <span>Rex Dreams</span>
-          </Typography>
+        <Card elevation={4}>
+          <Overlay>
+            <Typography variant="h4">
+              Enter the digital age with <span>RexDreams</span>
+            </Typography>
+          </Overlay>
         </Card>
-        <Card class="landingPageSlide">
-          <MobileImage />
-          <Typography variant="h4">
-            Engage your customers on all platforms
-          </Typography>
+        <Card elevation={4}>
+          <Overlay>
+            <Typography variant="h4">
+              Engage your customers on all platforms
+            </Typography>
+          </Overlay>
         </Card>
-        <Card class="landingPageSlide">
-          <MobileImage />
-          <Typography variant="h4">Increase</Typography>
+        <Card elevation={4}>
+          <Overlay>
+            <Typography variant="h4">Increase</Typography>
+          </Overlay>
         </Card>
       </Slider>
     </div>

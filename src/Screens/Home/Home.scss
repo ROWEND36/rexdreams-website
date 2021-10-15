@@ -16,17 +16,19 @@
 .swipeContainer__child:nth-child(even) {
   background-color: #121212;
 }
-.landingPageSlider-root {
-  padding: 20px 50px;
+.parallax-container {
+  position: relative;
+  overflow: hidden;
 }
+
 .landingPageSlide {
   padding: 90px 50px;
-  height: 100%;
-  text-align: center;
+  max-height: 80vh;
   position: relative;
 }
 .landingPageSlide .MuiTypography-h4 {
-  line-height: 1.75;
+  line-height: 1.5;
+  text-align: center;
 }
 $slick-arrow-color: black;
 $slick-dot-color: #e91e63;
@@ -36,4 +38,13 @@ $slick-dot-color-active: $slick-dot-color;
 .slick-prev {
   width: 35px;
   height: 35px;
+}
+.slick-next:before,
+.slick-prev:before {
+  width: 35px;
+  height: 35px;
+  font-size: 35px;
+}
+.slick-slide {
+  padding: 10px;
 }

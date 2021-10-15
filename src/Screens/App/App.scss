@@ -108,33 +108,6 @@
   }
 }
 
-.box {
-  position: relative;
-  width: 100%;
-  height: 90vh;
-}
-.onscreen-page {
-  height: 90vh;
-  width: 100%;
-  background: #000000;
-  border: none;
-}
-
-.offscreen-page {
-  height: 100%;
-  width: 100%;
-  background: #2a0e54;
-  opacity: 0;
-  border-radius: 50%;
-  top: 100%;
-}
-
-.box .moved-into-place {
-  /* position: absolute; */
-  top: 0;
-  opacity: 1;
-}
-
 .landing-footer {
   position: absolute;
   bottom: 0;
@@ -153,13 +126,6 @@
 #parent-center {
   position: center;
 }
-// .child-center {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   display: flex;
-// }
 
 body {
   margin: 0;

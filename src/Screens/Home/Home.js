@@ -8,7 +8,32 @@ import { animate } from "framer-motion";
 import App from "../App/App";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { IntroPage } from "./IntroPage";
 
+/**@param el {HTMLElement}
+ * @param y {number}
+ * @param h {number}
+ * @param direction {(1|-1)}
+ */
+const getTargetScrollTop = function (el, y, h, direction) {
+  const children = el.children;
+  let lastY = 0;
+  for (const x of children) {
+    let offset = x.offsetTop;
+    if (x.offsetParent !== el) {
+      offset -= el.offsetTop;
+    }
+    if (offset >= y) {
+      if (direction < 0) {
+        return lastY;
+      } else if (offset !== y) {
+        return offset;
+      }
+    }
+    lastY = offset;
+  }
+  return lastY;
+};
 function Home() {
   const gotoNextSlide = (ev) => {
     gotoSlide(ev, 1);
@@ -31,13 +56,12 @@ function Home() {
     const scrollTop = element.scrollTop;
     const scrollHeight = element.scrollHeight;
     const clientHeight = element.clientHeight;
-    const currentPage = Math.floor(scrollTop / clientHeight);
 
     const destScroll = Math.max(
       0,
       Math.min(
         scrollHeight - clientHeight,
-        (currentPage + direction) * clientHeight
+        getTargetScrollTop(element, scrollTop, clientHeight, direction)
       )
     );
     setScrollTarget({ element, targetScroll: destScroll });
@@ -65,6 +89,8 @@ function Home() {
   return (
     <App>
       <div {...handlers} ref={refPassThrough} className="swipeContainer">
+        <IntroPage className="swipeContainer__child" />
+
         <Landing className="swipeContainer__child" />
         <div className="swipeContainer__child">
           <Box m={4}>
