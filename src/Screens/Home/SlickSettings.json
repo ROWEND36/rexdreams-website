@@ -1,43 +1,16 @@
 {
     "dots": true,
     "speed": 500,
-    "slidesToShow": 3,
-    "infinite": false,
     "slidesToScroll": 1,
+    "slidesToShow": 1,
     "centerMode": true,
-    "centerPadding": "100px",
+    "centerPadding": "50px",
     "responsive": [
-      {
-        "breakpoint": 1024,
-        "settings": {
-          "slidesToShow": 2
-        }
-      },
-      {
-        "breakpoint": 768,
-        "settings": {
-          "slidesToShow": 1,
-          "centerPadding": "150px"
-        }
-      },
-      {
-        "breakpoint": 600,
-        "settings": {
-          "slidesToShow": 1
-        }
-      },
-      {
-        "breakpoint": 500,
-        "settings": {
-          "slidesToShow": 1,
-          "centerPadding": "50px"
-        }
-      },
       {
         "breakpoint": 400,
         "settings": {
           "slidesToShow": 1,
-          "centerMode": false
+          "centerPadding": "10px"
         }
       }
     ]

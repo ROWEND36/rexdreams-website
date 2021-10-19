@@ -1,9 +1,4 @@
 import { motion, useCycle, useMotionValue, useTransform } from "framer-motion";
-import Bounce from "react-reveal/Bounce";
-import RubberBand from "react-reveal/RubberBand";
-import Spin from "react-reveal/Spin";
-import Wobble from "react-reveal/Wobble";
-import config from "react-reveal/globals";
 import KingIcon from "../../Images/KingIcon.png";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AssistantPhotoIcon from "@material-ui/icons/AssistantPhoto";
@@ -43,21 +38,26 @@ const BoltIcon = (props) => {
 };
 const useStyles = makeStyles((theme) => ({
   sliderRoot: {
-    padding: `${theme.spacing(4, 4, 8)}`,
+    padding: `${theme.spacing(4, 0, 8)}`,
     background: theme.palette.background.contrast,
     [theme.breakpoints.down("xs")]: {
-      display: "flex",
-      alignItems: "center",
+      // display: "flex",
+      // alignItems: "center",
       "& .slick-slider": {
         width: "100%",
       },
     },
+  },
+  header: {
+    margin: theme.spacing(2, 6),
+    textAlign: "center",
   },
   circle: {
     borderRadius: 25,
     background: "black",
     height: 50,
     display: "flex",
+    margin: "auto",
     alignItems: "center",
     justifyContent: "center",
     width: 50,
@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     display: "flex",
     justifyContent: "center",
+    flexWrap: "wrap",
     "& .MuiCard-root": {
       margin: theme.spacing(2),
     },
@@ -72,9 +73,10 @@ const useStyles = makeStyles((theme) => ({
   pointCard: {
     // width: "400px",
     maxHeight: "80vh",
-    maxWidth: "70vw",
-    display: "flex",
-    margin: "auto",
+    minWidth: "200px",
+    flexGrow: 0,
+    maxWidth: "80vw",
+    display: "block",
     padding: theme.spacing(2),
     alignItems: "center",
     flexDirection: "column",
@@ -83,6 +85,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     zIndex: 0,
     position: "relative",
+    margin: "auto",
+    [theme.breakpoints.up("sm")]: {
+      maxWidth: "350px",
+    },
   },
 }));
 
@@ -113,7 +119,7 @@ const PointCard = ({
   );
 };
 const GridOrSlider = ({ className, children }) => {
-  const isMobile = useBreakpoint("sm");
+  const isMobile = useBreakpoint("xs");
   const sliderRef = useRef();
   const classes = useStyles();
 
@@ -130,33 +136,52 @@ const GridOrSlider = ({ className, children }) => {
     <div class={classes.grid}>{children}</div>
   );
 };
+const Waves2 = () => {
+  const theme = useTheme();
+
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path
+        fill={theme.palette.background.contrast}
+        fill-opacity="1"
+        d="M0,160L120,154.7C240,149,480,139,720,149.3C960,160,1200,192,1320,208L1440,224L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"
+      ></path>
+    </svg>
+  );
+};
 export default function Landing({ id, className }) {
   const classes = useStyles();
 
   return (
-    <div id={id} className={`${className} ${classes.sliderRoot}`}>
-      <GridOrSlider>
-        <PointCard
-          Icon={SecurityIcon}
-          header="Top-grade Security"
-          text="At Rexdreams, we consider security to be a requirement for all our software."
-        />
-        <PointCard
-          Icon={BoltIcon}
-          header="Superb performance"
-          text="At Rexdreams, we consider security to be a requirement for all our software."
-        />
-        <PointCard
-          Icon={SavingsIcon}
-          header="Top-grade security"
-          text="At Rexdreams, we consider security to be a requirement for all our software."
-        />
-        <PointCard
-          Icon={LocalFloristIcon}
-          header="Top-grade security"
-          text="At Rexdreams, we consider security to be a requirement for all our software."
-        />
-      </GridOrSlider>
-    </div>
+    <>
+      <div id={id} className={`${className} ${classes.sliderRoot}`}>
+        <Typography className={classes.header} variant="h5">
+          Why us?
+        </Typography>
+        <GridOrSlider>
+          <PointCard
+            Icon={SecurityIcon}
+            header="Top-grade Security"
+            text="At Rexdreams, we consider security to be a requirement for all our software."
+          />
+          <PointCard
+            Icon={BoltIcon}
+            header="Superb performance"
+            text="At Rexdreams, we consider security to be a requirement for all our software."
+          />
+          <PointCard
+            Icon={SavingsIcon}
+            header="Top-grade security"
+            text="At Rexdreams, we consider security to be a requirement for all our software."
+          />
+          <PointCard
+            Icon={LocalFloristIcon}
+            header="Top-grade security"
+            text="At Rexdreams, we consider security to be a requirement for all our software."
+          />
+        </GridOrSlider>
+      </div>
+      <Waves2 />
+    </>
   );
 }

@@ -10,6 +10,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { IntroPage } from "./IntroPage";
 import ThirdPage from "./ThirdPage";
+import FourthPage from "./FourthPage";
 
 /**@param el {HTMLElement}
  * @param y {number}
@@ -93,11 +94,7 @@ function Home() {
         <IntroPage className="swipeContainer__child" />
         <Landing className="swipeContainer__child" />
         <ThirdPage className="swipeContainer__child" />
-        <div className="swipeContainer__child">
-          <Box m={4}>
-            <h2>2</h2>
-          </Box>
-        </div>
+        <FourthPage className="swipeContainer__child" />
         <div className="swipeContainer__child">
           <Box m={4}>
             <h2>3</h2>

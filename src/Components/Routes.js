@@ -8,6 +8,7 @@ const Routes = () => {
       <Route path="/" exact strict component={Introduction} />
       <Route path="/Home" exact strict component={Home} />
       <Route path="/About" exact strict component={About} />
+      <Route path="/User" exact strict component={About} />
       {/* redirect user to SignIn page if route does not exist and user is not authenticated */}
       <Route component={Home} />
     </Switch>

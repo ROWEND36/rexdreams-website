@@ -63,6 +63,7 @@ const Waves = () => {
     </svg>
   );
 };
+
 export const IntroPage = function ({ className }) {
   const isMobile = useBreakpoint();
   const isTablet = useBreakpoint("sm");

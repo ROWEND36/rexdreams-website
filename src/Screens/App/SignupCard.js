@@ -10,7 +10,9 @@ import TextField from "@material-ui/core/TextField";
 import Menu from "@material-ui/core/Menu";
 import useBreakpoint from "../../Components/useBreakpoint";
 import { signUpEmail, logInEmail } from "../../Components/User";
+import { useHistory } from "react-router";
 const trackChange = function (setValue) {
+  console.error(setValue);
   return (ev) => {
     setValue(ev.target.value);
   };
@@ -78,22 +80,23 @@ function SignupForm({ anchorEl, id, onClose }) {
   const classes = useStyles();
   const isMenuOpen = Boolean(anchorEl);
   const isSmallScreen = useBreakpoint();
-  const { errorText, setErrorText } = useState();
-  const { email, setEmail } = useState();
-  const { password, setPassword } = useState();
-  const { password2, setPassword2 } = useState();
+  const [errorText, setErrorText] = useState();
+  const [email, setEmail] = useState();
+  const history = useHistory();
+  const [password, setPassword] = useState();
+  const [password2, setPassword2] = useState();
   const [signingIn, setSigningIn] = useState();
   const toggleSigningIn = () => {
     setSigningIn(!signingIn);
   };
   const proceed = () => {
-    const data = { email, password };
-
     if (!signingIn && password !== password2) {
       return setErrorText("Passwords do not match");
     }
     (signingIn ? logInEmail : signUpEmail)({ email, password })
-      .then(() => {})
+      .then(() => {
+        history.push("/User");
+      })
       .catch((e) => {
         setErrorText(e.message);
       });
@@ -116,7 +119,7 @@ function SignupForm({ anchorEl, id, onClose }) {
       <form className={classes.modal} noValidate autoComplete="off">
         <IconCard />
         <Typography className={classes.sectionEnd} variant="h5">
-          Let's get started
+          &#8288;Let's get started&#8288;
         </Typography>
         <TextField
           onChange={trackChange(setEmail)}

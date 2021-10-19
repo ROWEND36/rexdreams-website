@@ -44,7 +44,13 @@ export const themeLight = createMuiTheme({
       main: pink[500],
     },
     augment1: "#5472d3",
-    background: {},
+
+    augment2: "#061f47",
+    background: {
+      default: "#f5f9ff",
+      contrast: blue[200],
+      paper: "#f8faff",
+    },
   },
 });
 export default themeDark;
