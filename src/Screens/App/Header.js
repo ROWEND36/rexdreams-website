@@ -223,7 +223,11 @@ const Header = function ({ window }) {
   });
   return (
     <div>
-      <AppBar color="black" elevation={atTopOfScreen ? 0 : 4} position="fixed">
+      <AppBar
+        color="inherit"
+        elevation={atTopOfScreen ? 0 : 4}
+        position="fixed"
+      >
         <Toolbar>
           <ButtonBase
             href="/Home"

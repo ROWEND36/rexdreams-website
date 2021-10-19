@@ -13,7 +13,6 @@ import "aos/dist/aos.css";
 import Typography from "@material-ui/core/Typography";
 import Dreams from "../Images/Dreams.png";
 import Button from "@material-ui/core/Button";
-import Header from "./App/Header";
 
 const theme = createMuiTheme({});
 
@@ -73,7 +72,6 @@ function About() {
 
   return (
     <div className="App">
-      <Header />
       <Box className={classes.hero}>
         <Box>About Us</Box>
       </Box>
