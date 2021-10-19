@@ -1,0 +1,25 @@
+.swipeContainer {
+  // scroll-snap-type: y mandatory;
+  overflow: auto;
+  height: calc(100vh - 64px);
+  // flex-basis: auto;
+  // flex-grow: 1;
+  touch-action: none;
+}
+.swipeContainer__child {
+  // scroll-snap-align: center;
+  // scroll-snap-stop: always;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.swipeContainer__child:nth-child(even) {
+  background-color: #121212;
+}
+.landingPageSlider-root {
+  padding: 90px 50px;
+  text-align: center;
+}
+.landingPageSlider-root .MuiTypography-h4 {
+  line-height: 1.75;
+}
