@@ -14,6 +14,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import darkTheme from "../DarkTheme";
 import Store from "../../Components/Redux/Store";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -85,6 +86,7 @@ export default function App({ children: rootView }) {
           <Toolbar id="back-to-top-anchor" />
         </Provider>
         {rootView}
+        <Footer />
         <ScrollToTop>
           <Fab
             color="secondary"

@@ -53,7 +53,10 @@ function Home() {
   });
   const ref = useRef(null);
   const gotoSlide = (ev, direction) => {
-    const element = ref.current;
+    const element =
+      ev.target === document
+        ? document.scrollingElement || document.documentElement
+        : ev.target;
     if (!element) return;
     const scrollTop = element.scrollTop;
     const scrollHeight = element.scrollHeight;

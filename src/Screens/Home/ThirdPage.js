@@ -55,6 +55,7 @@ const Article = ({ header, preview, link, left }) => {
     <Box
       display="block"
       data-aos={left ? "fade-right" : "fade-left"}
+      data-aos-duration={600}
       style={{
         float: left ? "left" : "right",
       }}
@@ -82,7 +83,7 @@ const Article = ({ header, preview, link, left }) => {
 
 export default function ThirdPage({ className }) {
   useEffect(() => {
-    Aos.init({ duration: 600 });
+    Aos.init();
   });
   return (
     <Box className={className} p={4}>
