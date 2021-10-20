@@ -98,11 +98,6 @@ function Home() {
         <Landing className="swipeContainer__child" />
         <ThirdPage className="swipeContainer__child" />
         <FourthPage className="swipeContainer__child" />
-        <div className="swipeContainer__child">
-          <Box m={4}>
-            <h2>3</h2>
-          </Box>
-        </div>
       </div>
     </App>
   );

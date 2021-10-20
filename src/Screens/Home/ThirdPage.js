@@ -4,7 +4,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import useBreakpoint from "../../Components/useBreakpoint";
+import useBreakpoint from "../../Helpers/useBreakpoint";
 
 const useStyles = makeStyles((theme) => {
   return {

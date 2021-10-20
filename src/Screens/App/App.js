@@ -79,7 +79,7 @@ export default function App({ children: rootView }) {
   });
   return (
     <Fragment>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={Object.assign({}, darkTheme)}>
         <CssBaseline />
         <Provider store={Store}>
           <Header />

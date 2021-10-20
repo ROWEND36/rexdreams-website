@@ -1,7 +1,7 @@
 import { Parallax } from "../ParallaxLayer";
 // import landingImage from "../../Images/landingImageDesktop.svg";
 import multiDevicesImage from "../../Images/phone.png";
-import useBreakpoint from "../../Components/useBreakpoint";
+import useBreakpoint from "../../Helpers/useBreakpoint";
 import { useRef } from "react";
 import { makeStyles, Typography, useTheme } from "@material-ui/core";
 
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => {
       objectFit: "contain",
     },
     cube: {
-      background: theme.palette.augment2,
+      background: theme.palette.backgroundAccent,
       borderRadius: "10%",
       opacity: 0.5,
     },

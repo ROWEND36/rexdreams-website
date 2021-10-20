@@ -16,7 +16,7 @@ import SvgIcon from "@material-ui/core/SvgIcon";
 
 import "slick-carousel/slick/slick.scss";
 import { blue } from "@material-ui/core/colors";
-import useBreakpoint from "../../Components/useBreakpoint";
+import useBreakpoint from "../../Helpers/useBreakpoint";
 import { Link } from "react-router-dom";
 const SavingsIcon = (props) => {
   return (

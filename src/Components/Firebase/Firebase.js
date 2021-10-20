@@ -14,8 +14,6 @@ import {
 import config from "./firebaseconfig.json";
 import { useState, useEffect } from "react";
 
-initializeApp(config);
-const auth = getAuth();
 if (process.env.NODE_ENV !== "production") {
   const debugConfig = {
     apiKey: "AIzaSyCt3m5Oj3LPSFK-8yzG3BKFaEdIUupKfvQ",
@@ -65,7 +63,7 @@ export const signUpGoogle = ({ useRedirect }) => {
 };
 export const useUser = () => {
   const auth = getAuth();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(auth.currentUser);
   useEffect(() => {
     return onAuthStateChanged(auth, (user) => {
       if (user) {

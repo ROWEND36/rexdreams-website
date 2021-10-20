@@ -18,8 +18,7 @@ export const themeDark = createMuiTheme({
       main: "#757687",
     },
 
-    augment1: "#B5C8FF",
-    augment2: "#061f47",
+    backgroundAccent: "#061f47",
     background: {
       default: "#01060F",
       contrast: "#000000",
@@ -45,7 +44,7 @@ export const themeLight = createMuiTheme({
     },
     augment1: "#5472d3",
 
-    augment2: "#061f47",
+    backgroundAccent: "#061f47",
     background: {
       default: "#f5f9ff",
       contrast: blue[200],

@@ -4,13 +4,31 @@ import {
   AccordionSummary,
   Typography,
 } from "@material-ui/core";
-import useBreakpoint from "../../Components/useBreakpoint";
+import useBreakpoint from "../../Helpers/useBreakpoint";
 import { ExpandMore as ExpandMoreIcon } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
-import { NavLink } from "react-router-dom";
-const classes = makeStyles(function (theme) {
+import { useHistory, Link } from "react-router-dom";
+const useStyles = makeStyles(function (theme) {
   return {
-    listRoot: {},
+    footerContainer: {
+      width: "auto",
+      display: "flex",
+      justifyContent: "space-around",
+      padding: theme.spacing(4),
+    },
+    footerItem: {
+      listStyle: "none",
+      lineHeight: 32,
+      padding: theme.spacing(),
+      "& a": {
+        color: "inherit",
+        textDecoration: "none",
+      },
+    },
+    footerColumn: {
+      flexGrow: 1,
+      padding: theme.spacing(0, 4),
+    },
   };
 });
 const routes = [
@@ -53,36 +71,43 @@ const routes = [
     ],
   },
 ];
-const CollapseOrList = ({ header, children, open = false, onSelect }) => {
-  const isMobile = useBreakpoint();
-  if (isMobile) {
-    return (
-      <Accordion expanded={open} onChange={onSelect}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          {header}
-        </AccordionSummary>
-        <AccordionDetails>{children}</AccordionDetails>
-      </Accordion>
-    );
-  } else
-    return (
-      <div class={classes.listRoot}>
-        {header}
-        {children}
+const CollapsibleList = ({
+  data: { title: header, links: children },
+  open = false,
+  onSelect,
+}) => {
+  const classes = useStyles();
+  return (
+    <div class={classes.footerColumn}>
+      <div className={classes.footerHeader}>
+        <Typography variant="h6">{header}</Typography>
       </div>
-    );
+      <ul style={{ padding: 0 }}>
+        {children.map((e) => (
+          <li className={classes.footerItem}>
+            <Link to={e.href}>{e.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
+
 export default function Footer() {
-  return routes.map(({ title, links }, i) => (
-    <CollapseOrList
-      key={`${i}`}
-      open={true}
-      onSelect={undefined}
-      header={<Typography variant="h6" />}
-    >
-      {links.map((e) => (
-        <NavLink href={e.href}>{e.title}</NavLink>
+  const isMobile = useBreakpoint();
+  const isReallyBigScreen = useBreakpoint("lg");
+  const classes = useStyles();
+  return (
+    <div className={classes.footerContainer}>
+      {isReallyBigScreen ? <Typography variant="h3">Rexdreams</Typography> : ""}
+      {routes.map((data, i) => (
+        <CollapsibleList
+          key={`${i}`}
+          open={true}
+          onSelect={undefined}
+          data={data}
+        />
       ))}
-    </CollapseOrList>
-  ));
+    </div>
+  );
 }

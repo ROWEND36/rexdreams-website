@@ -20,6 +20,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import SignupCard from "./SignupCard";
 import logo from "../../Images/logo.png";
 import { Box, ButtonBase, useScrollTrigger } from "@material-ui/core";
+import { useUser } from "../../Components/Firebase/Firebase";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -107,6 +108,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MobileMenu = ({ anchorEl, onProfileMenuClick, onClose, id }) => {
   const classes = useStyles();
+  const user = useUser();
   const isMobileMenuOpen = Boolean(anchorEl);
 
   return (
