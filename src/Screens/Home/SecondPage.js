@@ -89,6 +89,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       maxWidth: "350px",
     },
+    [theme.breakpoints.down("xs")]: {
+      "&>.MuiTypography-paragraph": {
+        display: "block",
+        minHeight: "6em",
+      },
+    },
   },
 }));
 
@@ -162,22 +168,22 @@ export default function Landing({ id, className }) {
           <PointCard
             Icon={SecurityIcon}
             header="Top-grade Security"
-            text="At Rexdreams, we consider security to be a requirement for all our software."
+            text="We consider security to be a key requirement for all our products and services."
           />
           <PointCard
             Icon={BoltIcon}
             header="Superb performance"
-            text="At Rexdreams, we consider security to be a requirement for all our software."
+            text="Rexdreams software is always optimized for both speed and efficiency."
           />
           <PointCard
             Icon={SavingsIcon}
-            header="Top-grade security"
-            text="At Rexdreams, we consider security to be a requirement for all our software."
+            header="Budget friendly"
+            text="All our services come at affordable prices that can fit into any budget size."
           />
           <PointCard
             Icon={LocalFloristIcon}
-            header="Top-grade security"
-            text="At Rexdreams, we consider security to be a requirement for all our software."
+            header="Attractive Design"
+            text="Your finished product is guaranteed to be visually appealing while providing a smooth user experience."
           />
         </GridOrSlider>
       </div>

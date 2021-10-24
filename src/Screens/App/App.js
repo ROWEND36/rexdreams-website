@@ -15,6 +15,8 @@ import darkTheme from "../DarkTheme";
 import Store from "../../Components/Redux/Store";
 import Header from "./Header";
 import Footer from "./Footer";
+import { UserDataProvider } from "../../Components/Firebase/UserData";
+import { useLocation } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,6 +70,10 @@ ScrollToTop.propTypes = {
   window: PropTypes.func,
 };
 export default function App({ children: rootView }) {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   useEffect(() => {
     var s1 = document.createElement("script"),
       s0 = document.getElementsByTagName("script")[0];
@@ -79,25 +85,27 @@ export default function App({ children: rootView }) {
   });
   return (
     <Fragment>
-      <ThemeProvider theme={Object.assign({}, darkTheme)}>
-        <CssBaseline />
-        <Provider store={Store}>
-          <Header />
-          <Toolbar id="back-to-top-anchor" />
-        </Provider>
-        {rootView}
-        <Footer />
-        <ScrollToTop>
-          <Fab
-            color="secondary"
-            size="small"
-            aria-label="scroll back to top"
-            style={{ marginBottom: "120px" }}
-          >
-            <KeyboardArrowUpIcon />
-          </Fab>
-        </ScrollToTop>
-      </ThemeProvider>
+      <UserDataProvider>
+        <ThemeProvider theme={Object.assign({}, darkTheme)}>
+          <CssBaseline />
+          <Provider store={Store}>
+            <Header />
+            <Toolbar id="back-to-top-anchor" />
+          </Provider>
+          {rootView}
+          <Footer />
+          <ScrollToTop>
+            <Fab
+              color="secondary"
+              size="small"
+              aria-label="scroll back to top"
+              style={{ marginBottom: "120px" }}
+            >
+              <KeyboardArrowUpIcon />
+            </Fab>
+          </ScrollToTop>
+        </ThemeProvider>
+      </UserDataProvider>
     </Fragment>
   );
 }

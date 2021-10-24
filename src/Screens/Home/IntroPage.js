@@ -2,22 +2,30 @@ import { Parallax } from "../ParallaxLayer";
 // import landingImage from "../../Images/landingImageDesktop.svg";
 import multiDevicesImage from "../../Images/phone.png";
 import useBreakpoint from "../../Helpers/useBreakpoint";
-import { useRef } from "react";
-import { makeStyles, Typography, useTheme } from "@material-ui/core";
+import { useRef, useState } from "react";
+import { Button, makeStyles, Typography, useTheme } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => {
   return {
-    introText: {
+    landingView: {
       width: "70vw",
       height: "100%",
       display: "flex",
-      fontWeight: theme.typography.fontWeightBold,
-      alignItems: "center",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "start",
       padding: theme.spacing(5),
       [theme.breakpoints.up("xs")]: {
         width: "50vw",
         maxWidth: "450px",
       },
+    },
+    introText: {
+      fontWeight: theme.typography.fontWeightBold,
+    },
+    startButton: {
+      padding: theme.spacing(1.5),
+      margin: theme.spacing(5, 0, 0),
     },
     landingImage: {
       width: "50vw",
@@ -64,7 +72,7 @@ const Waves = () => {
   );
 };
 
-export const IntroPage = function ({ className }) {
+export const IntroPage = function ({ className, onSignUp }) {
   const isMobile = useBreakpoint();
   const isTablet = useBreakpoint("sm");
   const classes = useStyles();
@@ -76,12 +84,23 @@ export const IntroPage = function ({ className }) {
         <Cube rotation={35} size={400} left={900} top={100} />
       </Parallax>
       <div className="fullscreen-page">
-        <Typography
-          className={classes.introText}
-          variant={isTablet ? "h3" : "h2"}
-        >
-          Create professional web and mobile applications
-        </Typography>
+        <div className={classes.landingView}>
+          <Typography
+            className={classes.introText}
+            variant={isTablet ? "h3" : "h2"}
+          >
+            Create professional web and mobile applications
+          </Typography>
+
+          <Button
+            onClick={onSignUp}
+            variant="contained"
+            color="primary"
+            className={classes.startButton}
+          >
+            Get Started
+          </Button>
+        </div>
         {isMobile ? (
           ""
         ) : (

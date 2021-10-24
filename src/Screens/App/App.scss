@@ -11,7 +11,17 @@
 .App {
   text-align: center;
 }
-
+@font-face {
+  font-family: "rexdreams";
+  src: url("./JosefinSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+.MuiTypography-root.App-brandname {
+  font-weight: bold;
+  line-height: "120%";
+  font-family: rexdreams, Roboto;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

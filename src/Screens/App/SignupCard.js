@@ -16,6 +16,7 @@ import {
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Box from "@material-ui/core/Box";
+import SvgIcon from "@material-ui/core/SvgIcon";
 import icon from "../../Images/logo.png";
 import TextField from "@material-ui/core/TextField";
 import Menu from "@material-ui/core/Menu";
@@ -30,11 +31,13 @@ const trackChange = function (setValue) {
 };
 const GoogleIcon = () => {
   return (
-    <svg
+    <SvgIcon
       viewBox="0 0 24 24"
       width="24"
       height="24"
-      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        verticalAlign: "middle",
+      }}
     >
       <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">
         <path
@@ -54,7 +57,7 @@ const GoogleIcon = () => {
           d="M -14.754 43.989 C -12.984 43.989 -11.404 44.599 -10.154 45.789 L -6.734 42.369 C -8.804 40.429 -11.514 39.239 -14.754 39.239 C -19.444 39.239 -23.494 41.939 -25.464 45.859 L -21.484 48.949 C -20.534 46.099 -17.884 43.989 -14.754 43.989 Z"
         />
       </g>
-    </svg>
+    </SvgIcon>
   );
 };
 const useStyles = makeStyles((theme) => ({
@@ -73,8 +76,18 @@ const useStyles = makeStyles((theme) => ({
   sectionEnd: {
     marginBottom: theme.spacing(2),
   },
+  fullWidthInput: {
+    width: "100%",
+    // display: "block",
+  },
   spacedBtn: {
     margin: theme.spacing(0, 2),
+  },
+  googleBtn: {
+    display: "block",
+    margin: theme.spacing(1, "auto", 2),
+    padding: theme.spacing(1),
+    minWidth: 0,
   },
   continueBtn: {
     margin: theme.spacing(2, "auto"),
@@ -94,11 +107,19 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     padding: theme.spacing(1, 4, 2),
     maxWidth: "80vw",
-    [theme.breakpoints.up("xs")]: {
-      maxWidth: "600px",
+    [theme.breakpoints.up("sm")]: {
+      maxWidth: "45em",
     },
     "& .MuiFormControl-root": {
       margin: theme.spacing(1),
+    },
+  },
+  formRow: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    "&>.MuiFormControl-root": {
+      flexGrow: 1,
     },
   },
 }));
@@ -165,7 +186,7 @@ function SignupForm({ anchorEl, id, onClose }) {
 
   return (
     <Popover
-      anchorEl={isSmallScreen ? null : anchorEl}
+      anchorEl={isSmallScreen || anchorEl === true ? null : anchorEl}
       anchorOrigin={position}
       id={id}
       keepMounted
@@ -185,33 +206,32 @@ function SignupForm({ anchorEl, id, onClose }) {
           </Typography>
         ) : (
           <form noValidate>
-            <TextField
-              onChange={trackChange(setEmail)}
-              label="Email"
-              type="email"
-              name="email"
-              fullWidth
-              variant="outlined"
-              style={{
-                display: signingIn ? "" : "block",
-              }}
-            />
-            <TextField
-              onChange={trackChange(setPassword)}
-              label="Password"
-              type="passsword"
-              name="password"
-              variant="outlined"
-            />
-            {signingIn ? undefined : (
+            <div className={classes.formRow}>
               <TextField
-                onChange={trackChange(setPassword2)}
-                label="Confirm Password"
-                type="confirmpassword"
-                name="confirmpassword"
+                onChange={trackChange(setEmail)}
+                label="Email"
+                type="email"
+                name="email"
+                variant="outlined"
+                className={classes.fullWidthInput}
+              />
+              <TextField
+                onChange={trackChange(setPassword)}
+                label="Password"
+                type="password"
+                name="password"
                 variant="outlined"
               />
-            )}
+              {signingIn ? undefined : (
+                <TextField
+                  onChange={trackChange(setPassword2)}
+                  label="Confirm Password"
+                  type="password"
+                  name="confirmpassword"
+                  variant="outlined"
+                />
+              )}
+            </div>
             <Button
               className={classes.continueBtn}
               variant="contained"
@@ -220,14 +240,16 @@ function SignupForm({ anchorEl, id, onClose }) {
             >
               Continue
             </Button>
+            <Typography align="center">
+              {signingIn ? "or log in with" : "or sign up with"}
+            </Typography>
             <Button
-              className={classes.continueBtn}
+              className={classes.googleBtn}
               variant="contained"
               color="default"
               onClick={proceedGoogle}
             >
               <GoogleIcon />
-              Continue with Google
             </Button>
           </form>
         )}

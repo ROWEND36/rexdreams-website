@@ -16,34 +16,34 @@ const useStyles = makeStyles((theme) => {
 
 const articles = [
   {
-    header: "Bring your entrepreneurship idea to life",
+    header: "Bring your entrepreneurship idea to the spotlight",
     preview:
-      "Dolore ad aliquip commodo adipisicing magna amet. Cupidatat incididunt esse irure ut enim aliquip. Ut exercitation commodo laborum elit laborum enim enim occaecat fugiat magna. Consequat sit ullamco est consectetur et irure consequat laborum.",
+      "Take your business ideas one step further by showcasing it the over 4.5 billion users in the world. The internet makes the world a global village, and with the innovative solutions Rexdreams offers, you are one step away from gaining its full attention.",
   },
   {
     header: "Rexdreams turns dreams into software",
     preview:
-      "Et quis ipsum voluptate ut consequat veniam. Culpa ea commodo adipisicing ipsum sit pariatur ullamco deserunt ad nisi Lorem cupidatat. Commodo occaecat veniam ex pariatur consectetur aliquip duis sunt fugiat. Nostrud consequat commodo id Lorem eiusmod nisi qui eiusmod velit do duis irure nostrud. Ad enim magna est laborum consequat do consequat consequat ipsum nulla excepteur ut ex officia. Pariatur incididunt labore deserunt consectetur aliqua irure nostrud dolore. Aute est deserunt ut sit pariatur non labore.",
+      "At Rexdreams, we understand how important it is to have a dream. That is why we take them very seriously. Regardless of whether you are building your personal website or the next Facebook, you can be assured that Rexdreams will do all it takes to turn that dream into a reality.",
   },
   {
     header: "Search engine optimization (SEO)",
     preview:
-      "Enim quis sunt anim nulla amet sint. Proident do qui amet amet commodo veniam et ipsum proident do. Amet ex ipsum occaecat aliqua laborum ullamco sunt Lorem. Consequat proident veniam dolore fugiat duis qui occaecat amet labore quis anim. Pariatur pariatur minim laboris do sint cupidatat fugiat ipsum occaecat proident do enim eu.",
+      "68% of online experiences begin with a search engine. And yet, less than 1% of Google searchers click on results from the second page. Consequently, Rexdreams puts in effort guided by years of experience into making sure that your product appear at the very top of the first page of online search results and remain there.",
   },
   {
     header: "Pay as you grow",
     preview:
-      "Enim quis sunt anim nulla amet sint. Proident do qui amet amet commodo veniam et ipsum proident do. Amet ex ipsum occaecat aliqua laborum ullamco sunt Lorem. Consequat proident veniam dolore fugiat duis qui occaecat amet labore quis anim. Pariatur pariatur minim laboris do sint cupidatat fugiat ipsum occaecat proident do enim eu.",
+      "You should not have to put a hole in your wallet to maintain your software. That is why Rexdreams' technology stack favors adaptive price models that can be maintained with very little or no cost. With such friendly and predictable pricing, our customers can make informed financial decisions and maximize revenue.",
   },
   {
     header: "Deploy with confidence",
     preview:
-      "Enim quis sunt anim nulla amet sint. Proident do qui amet amet commodo veniam et ipsum proident do. Amet ex ipsum occaecat aliqua laborum ullamco sunt Lorem. Consequat proident veniam dolore fugiat duis qui occaecat amet labore quis anim. Pariatur pariatur minim laboris do sint cupidatat fugiat ipsum occaecat proident do enim eu.",
+      "Server failures, data breach, application crash, delayed reponse, software errors, et cetera; we know your nightmares. With Rexdreams, you can rest assured you will not experience of that. Every software and hardware component we employ is tested thoroughly for performance, security and accuracy before deployment to trusted servers. We do all the worrying so you never have to.",
   },
   {
     header: "Payment Integration",
     preview:
-      "Pariatur irure consectetur sit nisi minim consectetur non non dolore irure. Esse anim ullamco excepteur mollit velit aute consequat adipisicing exercitation. Non ut occaecat ipsum occaecat sunt do do exercitation velit. Ex officia eiusmod irure fugiat officia esse duis aliquip fugiat sint labore elit est dolore.",
+      "If you have ever tried to start an online business, you will realise that receiving revenue online can be a bit of a hassle for new users. For some regions, there are so many different payment platforms with their numerous pros and cons while for other regions, there is little or no support. Rexdreams handles all these issues for you while ensuring both your and your customers get the best payment experience.",
   },
 ];
 
@@ -75,7 +75,7 @@ const Article = ({ header, preview, link, left }) => {
       </Typography>
       <Typography paragraph className={classes.indented}>
         {"    " + preview}
-        <Link href={link}>...Read more</Link>
+        {link ? <Link href={link}>...Read more</Link> : ""}
       </Typography>
     </Box>
   );

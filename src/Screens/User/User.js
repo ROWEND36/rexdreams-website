@@ -7,6 +7,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Button from "@material-ui/core/Button";
 import App from "../App/App";
+import { submitJob } from "../../Components/Firebase/UserData";
 const requestTypes = {
   title: "How can Rexdreams help you?",
   options: [
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
+
 const UserRoot = () => {
   const user = useUser();
   return !user ? (
@@ -69,8 +71,11 @@ const UserRoot = () => {
 };
 export const UserPage = ({ user }) => {
   const [nav, setNav] = useState([requestTypes]);
+  const [extraData, setExtraData] = useState("");
+  const handleExtraData = function (ev) {
+    setExtraData(ev.target.value);
+  };
   const question = nav[nav.length - 1];
-  console.log(nav);
   const classes = useStyles();
   const advance = function (i) {
     return function () {
@@ -79,6 +84,18 @@ export const UserPage = ({ user }) => {
   };
   const goBack = function () {
     setNav(nav.slice(0, -1));
+  };
+  const submitData = function () {
+    const description = [
+      ...nav.slice(1).map((e) => e.name),
+      ...(extraData ? [extraData] : []),
+    ];
+    const title = nav[1].name;
+    submitJob({
+      user,
+      title,
+      description,
+    });
   };
   return (
     <Box p={4} className={classes.userPageRoot}>
@@ -129,12 +146,15 @@ export const UserPage = ({ user }) => {
             multiline
             fullWidth
             rows={3}
+            value={extraData}
+            onChange={handleExtraData}
             rowsMax={9}
             variant="filled"
           ></TextField>
           <Button
             variant="contained"
             color="primary"
+            onClick={submitData}
             style={{ display: "block", margin: "16px auto" }}
           >
             Submit

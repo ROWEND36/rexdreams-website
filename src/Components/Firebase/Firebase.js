@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -30,23 +31,26 @@ if (process.env.NODE_ENV !== "production") {
   initializeApp(config);
 }
 
+const handleError = (e) => {
+  console.error(e);
+};
 export const signUpEmail = ({ email, password }) => {
   const auth = getAuth();
-  return createUserWithEmailAndPassword(auth, email, password).then(
-    (userCredential) => {
+  return createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
       // Signed in
       return userCredential.user;
       // ...
-    }
-  );
+    })
+    .catch(handleError);
 };
 export const logInEmail = ({ email, password }) => {
   const auth = getAuth();
-  return signInWithEmailAndPassword(auth, email, password).then(
-    (userCredential) => {
+  return signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
       return userCredential.user;
-    }
-  );
+    })
+    .catch(handleError);
 };
 export const signUpGoogle = ({ useRedirect }) => {
   const provider = new GoogleAuthProvider();
@@ -54,29 +58,36 @@ export const signUpGoogle = ({ useRedirect }) => {
 
   if (useRedirect) return signInWithRedirect(auth, provider);
   else
-    return signInWithPopup(auth, provider).then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      return credential.user;
-      // ...
-    });
+    return signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        return credential.user;
+        // ...
+      })
+      .catch(handleError);
 };
+/**@returns {import("@firebase/auth").User} */
 export const useUser = () => {
   const auth = getAuth();
   const [user, setUser] = useState(auth.currentUser);
   useEffect(() => {
-    return onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        setUser(user);
-        // ...
-      } else {
-        // User is signed out
-        // ...
-        setUser(null);
-      }
-    });
+    return onAuthStateChanged(
+      auth,
+      (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          setUser(user);
+          // ...
+        } else {
+          // User is signed out
+          // ...
+          setUser(null);
+        }
+      },
+      handleError
+    );
   });
   return user;
 };
@@ -87,7 +98,7 @@ export const logOut = () => {
     .then(() => {
       // Sign-out successful.
     })
-    .catch((error) => {
-      // An error happened.
-    });
+    .catch(handleError);
 };
+
+export const store = getFirestore();

@@ -11,6 +11,7 @@ import "aos/dist/aos.css";
 import { IntroPage } from "./IntroPage";
 import ThirdPage from "./ThirdPage";
 import FourthPage from "./FourthPage";
+import SignupForm from "../App/SignupCard";
 
 /**@param el {HTMLElement}
  * @param y {number}
@@ -90,15 +91,22 @@ function Home() {
     });
     return () => controls.stop();
   }, [scrollOpts]);
-
+  const [showingSignUp, setShowSignUp] = useState(null);
+  const signUp = function () {
+    setShowSignUp(true);
+  };
+  const closeSignUp = function () {
+    setShowSignUp(false);
+  };
   return (
     <App>
       <div {...handlers} ref={refPassThrough} className="swipeContainer">
-        <IntroPage className="swipeContainer__child" />
+        <IntroPage className="swipeContainer__child" onSignUp={signUp} />
         <Landing className="swipeContainer__child" />
         <ThirdPage className="swipeContainer__child" />
         <FourthPage className="swipeContainer__child" />
       </div>
+      <SignupForm anchorEl={showingSignUp} onClose={closeSignUp} />
     </App>
   );
 }

@@ -19,8 +19,16 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import HomeIcon from "@material-ui/icons/Home";
 import SignupCard from "./SignupCard";
 import logo from "../../Images/logo.png";
-import { Box, ButtonBase, useScrollTrigger } from "@material-ui/core";
+import {
+  Box,
+  ButtonBase,
+  Typography,
+  useScrollTrigger,
+} from "@material-ui/core";
 import { useUser } from "../../Components/Firebase/Firebase";
+import { AllOrNothing } from "./AllOrNothing";
+import { useHistory } from "react-router";
+import { useUnreadMessageCount } from "../../Components/Firebase/UserData";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -110,7 +118,10 @@ const MobileMenu = ({ anchorEl, onProfileMenuClick, onClose, id }) => {
   const classes = useStyles();
   const user = useUser();
   const isMobileMenuOpen = Boolean(anchorEl);
-
+  const history = useHistory();
+  const handleLink = function (link) {
+    return () => history.push(link);
+  };
   return (
     <Menu
       anchorEl={anchorEl}
@@ -124,13 +135,13 @@ const MobileMenu = ({ anchorEl, onProfileMenuClick, onClose, id }) => {
     >
       {
         <div>
-          <MenuItem>
-            <IconButton aria-label="Home" href="/Home">
+          <MenuItem onClick={handleLink("/Home")}>
+            <IconButton aria-label="Home">
               <HomeIcon />
             </IconButton>
             Home
           </MenuItem>
-          <MenuItem>
+          {/* <MenuItem>
             <IconButton
               aria-label="Chats with us and share images"
               href="/Chat"
@@ -140,21 +151,21 @@ const MobileMenu = ({ anchorEl, onProfileMenuClick, onClose, id }) => {
               </Badge>
             </IconButton>
             Chat
-          </MenuItem>
-          <MenuItem>
-            <IconButton aria-label="About" href="/About">
+          </MenuItem> */}
+          <MenuItem onClick={handleLink("/About")}>
+            <IconButton aria-label="About">
               <InfoIcon />
             </IconButton>
             About
           </MenuItem>
-          <MenuItem divider>
-            <IconButton aria-label="Invest" href="/Invest">
+          <MenuItem divider onClick={handleLink("/News Feed")}>
+            <IconButton>
               <RssFeedIcon />
             </IconButton>
             Invest
           </MenuItem>
           <div className={classes.menuItemBottomRow}>
-            <IconButton aria-label="show 4 new mails">
+            {/* <IconButton aria-label="show 4 new mails">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
               </Badge>
@@ -163,7 +174,7 @@ const MobileMenu = ({ anchorEl, onProfileMenuClick, onClose, id }) => {
               <Badge badgeContent={11} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
               onClick={onProfileMenuClick}
               aria-label="account of current user"
@@ -182,11 +193,13 @@ const Header = function ({ window }) {
   const classes = useStyles();
   const [signupAnchorEl, setSignupMenuAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [messagesAnchorEl, setMessagesAnchorEl] = useState(null);
   const [focused, setFocused] = useState(false);
   const setBlurred = () => {
     setFocused(false);
   };
   const handleSignupMenuOpen = (event) => {
+    setMessagesAnchorEl(null);
     if (mobileMoreAnchorEl) {
       setSignupMenuAnchorEl(mobileMoreAnchorEl);
       setMobileMoreAnchorEl(null);
@@ -201,8 +214,14 @@ const Header = function ({ window }) {
     setSignupMenuAnchorEl(null);
     handleMobileMenuClose();
   };
-
+  const handleMessagesOpen = () => {
+    setSignupMenuAnchorEl(null);
+    setMobileMoreAnchorEl(null);
+    setMessagesAnchorEl(true);
+  };
   const handleMobileMenuOpen = (event) => {
+    setSignupMenuAnchorEl(null);
+    setMessagesAnchorEl(null);
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
@@ -224,7 +243,9 @@ const Header = function ({ window }) {
       />
     );
   };
-  const [modal, setModal] = useState(false);
+  // const [searchModalShown, setShowSearchModal] = useState(false);
+  const user = useUser();
+  const unreadMessages = useUnreadMessageCount();
   const scrolleddown = useScrollTrigger({
     disableHysteresis: true,
     target: window ? window() : undefined,
@@ -247,18 +268,29 @@ const Header = function ({ window }) {
           >
             <img alt="logo" src={logo} height="50px" width="50px" />
           </ButtonBase>
-          <div elevation={focused ? 4 : 0} className={classes.search}>
+          <Typography
+            className="App-brandname"
+            style={{
+              fontSize: "24px",
+              display: "block",
+              height: "30px",
+              lineHeight: "36px",
+            }}
+            variant="caption"
+          >
+            REXDREAMS
+          </Typography>
+          {/* <div elevation={focused ? 4 : 0} className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon
                 onClick={() => {
-                  setModal(true);
+                  setShowSearchModal(true);
                 }}
               />
             </div>
             {showSearch()}
-            <Modal isVisible={modal}>{showSearch()}</Modal>
-          </div>
-
+            <Modal isVisible={searchModalShown}>{showSearch()}</Modal>
+          </div> */}
           {/* <div className="d-none d-md-inline-block"> */}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -266,16 +298,22 @@ const Header = function ({ window }) {
               className="d-flex"
               style={{ float: "right", marginLeft: "20px" }}
             >
-              <IconButton
-                href="/Home"
-                activeStyle={{ color: "purple" }}
-                aria-label="Home"
-                color="inherit"
-                className="ml-4 mr-2"
+              <AllOrNothing
+                preview={
+                  <IconButton
+                    href="/Home"
+                    activeStyle={{ color: "purple" }}
+                    aria-label="Home"
+                    color="inherit"
+                    className="ml-4 mr-2"
+                  >
+                    <HomeIcon />
+                  </IconButton>
+                }
               >
-                <HomeIcon />
-              </IconButton>
-              <IconButton
+                Home
+              </AllOrNothing>
+              {/* <IconButton
                 href="/Chat"
                 activeStyle={{ color: "purple" }}
                 aria-label="Chats with us and share images"
@@ -285,7 +323,7 @@ const Header = function ({ window }) {
                 <Badge badgeContent={4} color="secondary">
                   <ChatIcon />
                 </Badge>
-              </IconButton>
+              </IconButton> */}
               <IconButton
                 href="/About"
                 fontSize="large"
@@ -307,16 +345,22 @@ const Header = function ({ window }) {
               </IconButton>
             </div>
 
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
+            {user ? (
+              <IconButton
+                onClick={handleMessagesOpen}
+                aria-label={`show {unreadMessages} new mails`}
+                color="inherit"
+              >
+                <Badge badgeContent={unreadMessages} color="secondary">
+                  <MailIcon />
+                </Badge>
+              </IconButton>
+            ) : undefined}
+            {/* <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
               edge="end"
               aria-label="account of current user"
